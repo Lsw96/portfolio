@@ -13,11 +13,11 @@ import SmoothScrolling from '@components/SmoothScrolling';
 import '@scss/core-index.scss';
 
 createRoot(document.getElementById('root')!).render(
-	<StrictMode>
+	// <StrictMode>
 		<Provider store={store}>
 			<SmoothScrolling>
 				<App />
 			</SmoothScrolling>
 		</Provider>
-	</StrictMode>
+	// </StrictMode>
 );

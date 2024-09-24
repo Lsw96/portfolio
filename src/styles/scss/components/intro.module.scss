@@ -1,6 +1,12 @@
 @use '../abstracts/variables' as *;
 @use '../components//glitch.scss';
 
+.star {
+    position: absolute;
+    border-radius: 50%;
+    background-color: #f6f6f6;
+}
+
 .visual,
 .box {
     position: relative;
