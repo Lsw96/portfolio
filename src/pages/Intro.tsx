@@ -2,10 +2,10 @@ import React, { useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollToPlugin } from 'gsap/ScrollToPlugin';
 
-gsap.registerPlugin(ScrollToPlugin);
-
 // styles
 import styles from '@scss/components/intro.module.scss';
+
+gsap.registerPlugin(ScrollToPlugin);
 
 const Intro: React.FC = () => {
 	const intro1Ref = useRef<HTMLDivElement | null>(null);
