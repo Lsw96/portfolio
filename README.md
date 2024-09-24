@@ -1,50 +1,20 @@
 # React + TypeScript + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# 커밋 메시지 컨벤션
 
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
-
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
-
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
-
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
-
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+### 커밋 타입
+| 타입    | 설명                                  |
+|---------|---------------------------------------|
+| Feat    | 새로운 기능 추가                       |
+| Fix     | 버그 수정                              |
+| Docs    | 문서 수정                              |
+| Style   | 코드 포매팅 (세미콜론 누락 등 코드 자체의 변경이 없는 경우) |
+| Refactor| 코드 리팩토링                         |
+| Test    | 테스트 코드 추가 또는 수정            |
+| Chore   | 패키지 매니저 수정, 기타 수정 (ex. `.gitignore`) |
+| Design  | CSS 등 사용자 UI 디자인 변경          |
+| Comment | 필요한 주석 추가 및 변경              |
+| Rename  | 파일 또는 폴더 명을 수정하거나 옮기는 작업만인 경우 |
+| Remove  | 파일을 삭제하는 작업만 수행한 경우   |
+| !BREAKING CHANGE | 커다란 API 변경의 경우     |
+| !HOTFIX | 급하게 치명적인 버그를 고쳐야 하는 경우 |
