@@ -1,0 +1,28 @@
+@use '../abstracts/variables' as *;
+
+html,
+body {
+	height: 100%;
+	font-size: 1rem; // 16px
+	font-family: $base-font;
+	font-variant-numeric: tabular-nums; // 숫자 고정폭
+	font-variant-numeric: slashed-zero; // 슬래시 0 숫자 만들기
+	line-height: 1.5;
+    box-sizing: border-box;
+}
+
+#root {
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+
+#App {
+    background-color: #1a1c20;
+}
+
+@media screen and (max-width: 720px) {
+	body {
+		font-size: 0.75rem; // 12px
+	}
+}
