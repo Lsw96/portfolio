@@ -70,9 +70,7 @@ const Intro: React.FC = () => {
 						LEESEONGWOO
 					</span>
 				</h1>
-				<footer>
-					<span>© 2024 LEESEONGWOO. All rights reserved.</span>
-				</footer>
+				<span className={styles.contentText}>인터랙티브한 웹 디자인에 관심이 많은 프런트엔드 개발자</span>
 				<button className={styles.startBtn} onClick={handleScrollToIntro}>
 					LET ME INTRODUCE MYSELF
 				</button>

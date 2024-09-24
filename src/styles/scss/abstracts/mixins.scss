@@ -1,10 +1,12 @@
-// layout min size
-@mixin min-size($width) {
-  width: 100%;
-  height: 100%;
-  min-width: $width;
-} 
+@mixin fadeIn($duration: 1s, $delay: 0s) {
+    animation: fadeIn $duration ease-in-out $delay forwards;
+}
 
-@mixin LR-margin($margin) {
-  margin: 0 $margin;
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
 }
