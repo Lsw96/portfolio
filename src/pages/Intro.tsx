@@ -12,7 +12,7 @@ import { initializeStars, Star } from '@store/slices/starsSlice';
 import Stars from '@components/Star';
 
 // utils
-import { getCenterArea, createStar } from '@utils/starArea';
+import { getMainArea, getCenterArea, createStar } from '@utils/starArea';
 
 // styles
 import styles from '@scss/components/intro.module.scss';
@@ -36,8 +36,11 @@ const Intro: React.FC = () => {
 
 	// 별을 생성하는 함수 (화면 중앙 영역을 피해 생성)
 	const generateStars = () => {
-		const centerArea = getCenterArea(); // 중앙 영역 계산
-		const generatedStars = Array.from({ length: 14 }, (_, i) => createStar(i, centerArea));
+		const mainArea = getMainArea(); // main 태그의 영역 계산
+		const centerArea = getCenterArea(mainArea); // 중앙 영역 계산
+		const generatedStars = Array.from({ length: 14 }, (_, i) =>
+			createStar(i, mainArea, centerArea),
+		);
 		dispatch(initializeStars(generatedStars)); // Redux에 저장
 	};
 
@@ -52,33 +55,35 @@ const Intro: React.FC = () => {
 	return (
 		<>
 			<main className={styles.visual}>
-				{/* 별 렌더링 */}
 				{stars.map(star => (
 					<Stars key={star.id} {...star} />
 				))}
-				<h1 className={styles.title}>
+				<section className={styles.textWrapper}>
+					<h1 className={styles.title}>
+						<span
+							className={`${styles.largeText} ${styles.glitch}`}
+							data-glitch="PORTFOLIO"
+						>
+							PORTFOLIO
+						</span>
+						<span
+							className={`${styles.smallText} ${styles.glitch}`}
+							data-glitch="LEESEONGWOO"
+						>
+							LEESEONGWOO
+						</span>
+					</h1>
 					<span
-						className={`${styles.largeText} ${styles.glitch}`}
-						data-glitch="PORTFOLIO"
+						className={styles.contentText}
+						data-wave="인터랙티브한 웹 디자인에 관심이 많은 프런트엔드 개발자"
 					>
-						PORTFOLIO
+						인터랙티브한 웹 디자인에 관심이 많은 프런트엔드 개발자
 					</span>
-					<span
-						className={`${styles.smallText} ${styles.glitch}`}
-						data-glitch="LEESEONGWOO"
-					>
-						LEESEONGWOO
-					</span>
-				</h1>
-				<span
-					className={styles.contentText}
-					data-wave="인터랙티브한 웹 디자인에 관심이 많은 프런트엔드 개발자"
-				>
-					인터랙티브한 웹 디자인에 관심이 많은 프런트엔드 개발자
-				</span>
-				<button className={styles.startBtn} onClick={handleScrollToIntro}>
-					LET ME INTRODUCE MYSELF
-				</button>
+
+					<button className={styles.startBtn} onClick={handleScrollToIntro}>
+						LET ME INTRODUCE MYSELF
+					</button>
+				</section>
 			</main>
 
 			<div className={styles.box} ref={intro1Ref}>
