@@ -1,7 +1,17 @@
+@mixin heightSize {
+    height: 100vh;
+    max-height: 1080px;
+}
+@mixin flex($direction: row, $justify: center, $align: center) {
+    display: flex;
+    flex-direction: $direction;
+    justify-content: $justify;
+    align-items: $align;
+}
+
 @mixin fadeIn($duration: 1s, $delay: 0s) {
     animation: fadeIn $duration ease-in-out $delay forwards;
 }
-
 @keyframes fadeIn {
     0% {
         opacity: 0;

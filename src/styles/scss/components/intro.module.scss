@@ -8,31 +8,31 @@
 	background-color: #f6f6f6;
 }
 
-.visual,
 .box {
-	position: relative;
-	overflow: hidden;
-	height: 100vh;
-	display: flex;
-	flex-direction: column;
-	justify-content: flex-start;
-	align-items: center;
-	gap: 64px;
+	@include heightSize;
+	@include flex(column);
 }
 
 .visual {
+	@include heightSize;
+}
+
+.textWrapper {
+    overflow: hidden;
+	position: relative;
+	@include flex(column, flex-start);
+	gap: 64px;
 	font-family: $base-Bold-font;
 }
 
 .title {
 	user-select: none;
-	display: flex;
-	flex-direction: column-reverse;
-	align-items: center;
+	@include flex(column-reverse);
 	margin-top: 68px;
 	font-family: inherit;
-	color: $white-color;
 	line-height: 1;
+	color: $white-color;
+
 	.largeText {
 		height: 100%;
 		font-size: 124px;
@@ -82,7 +82,7 @@
 	&::before {
 		content: attr(data-wave);
 		position: absolute;
-        color: #666;
+		color: #666;
 		animation: wave 3s ease-in-out infinite;
 		@keyframes wave {
 			0%,
