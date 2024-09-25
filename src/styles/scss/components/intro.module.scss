@@ -57,30 +57,61 @@
 }
 
 .contentText {
+	position: relative;
 	color: #333;
 	font-size: 18px;
 	font-family: $base-font;
 	letter-spacing: 0.5px;
 	padding: 12px 18px;
 	transition: all 1s ease;
-	&:hover {
-		transform: translateY(-8px);
-		color: #888;
-	}
 	opacity: 0;
 	animation: moveFadeIn 0.8s 0.36s ease-in-out forwards;
 	@keyframes moveFadeIn {
 		0% {
 			opacity: 0;
-			transform: translateY(-48px) scale(0.5);
+			transform: translateY(-18px) scale(0.8);
 		}
-		82.5% {
+		82% {
 			transform: translateY(0) scale(1.02);
-			transition-timing-function: cubic-bezier(0.68, -0.55, 0.265, 1.55);
 		}
 		100% {
 			opacity: 1;
 			transform: translateY(0) scale(1);
+		}
+	}
+	&::before {
+		content: attr(data-wave);
+		position: absolute;
+        color: #666;
+		animation: wave 3s ease-in-out infinite;
+		@keyframes wave {
+			0%,
+			100% {
+				clip-path: polygon(
+					0% 45%,
+					16% 44%,
+					33% 50%,
+					64% 60%,
+					80% 61%,
+					94% 59%,
+					100% 52%,
+					100% 100%,
+					0% 100%
+				);
+			}
+			50% {
+				clip-path: polygon(
+					0% 60%,
+					15% 65%,
+					34% 66%,
+					66% 62%,
+					67% 50%,
+					84% 45%,
+					100% 46%,
+					100% 100%,
+					0% 100%
+				);
+			}
 		}
 	}
 }
@@ -100,7 +131,7 @@
 		transform: translateY(-2px);
 	}
 	opacity: 0;
-	@include fadeIn(1.125s, .875s);
+	@include fadeIn(1.125s, 0.875s);
 
 	&::before {
 		content: '';

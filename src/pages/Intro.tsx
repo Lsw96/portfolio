@@ -70,7 +70,12 @@ const Intro: React.FC = () => {
 						LEESEONGWOO
 					</span>
 				</h1>
-				<span className={styles.contentText}>인터랙티브한 웹 디자인에 관심이 많은 프런트엔드 개발자</span>
+				<span
+					className={styles.contentText}
+					data-wave="인터랙티브한 웹 디자인에 관심이 많은 프런트엔드 개발자"
+				>
+					인터랙티브한 웹 디자인에 관심이 많은 프런트엔드 개발자
+				</span>
 				<button className={styles.startBtn} onClick={handleScrollToIntro}>
 					LET ME INTRODUCE MYSELF
 				</button>
