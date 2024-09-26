@@ -152,6 +152,103 @@
 		}
 	}
 }
+@include mobile {
+	.iconWrap {
+		.sprite_i {
+			&.javascript {
+				top: 47%;
+				right: 5%;
+			}
+            &.react {
+                left: 5%;
+            }
+			&.typescript {
+				top: 17.5%;
+				left: 85%;
+			}
+		}
+        .sprite_ic {
+            &.money {
+                left: 11%;
+            }
+        }
+		.braketWrap {
+			bottom: 37.5%;
+			.braket {
+				&.braketLeft {
+					left: 48px;
+					@keyframes braketMoveLeft {
+						0% {
+							left: 48px;
+						}
+						100% {
+							left: 38px;
+						}
+					}
+				}
+				&.braketRight {
+					left: 88px;
+					@keyframes braketMoveRight {
+						0% {
+							left: 88px;
+						}
+						100% {
+							left: 98px;
+						}
+					}
+				}
+			}
+		}
+	}
+}
+@include tablet {
+	.iconWrap {
+		.sprite_i {
+			&.javascript {
+				right: 5%;
+			}
+			&.react {
+				left: 9.5%;
+			}
+			&.typescript {
+				top: 21%;
+				left: 85%;
+			}
+		}
+		.sprite_ic {
+			&.money {
+				left: 15%;
+			}
+		}
+		.braketWrap {
+			bottom: 35%;
+			.braket {
+				&.braketLeft {
+					left: 146px;
+					@keyframes braketMoveLeft {
+						0% {
+							left: 146px;
+						}
+						100% {
+							left: 136px;
+						}
+					}
+				}
+				&.braketRight {
+					left: 204px;
+					@keyframes braketMoveRight {
+						0% {
+							left: 204px;
+						}
+						100% {
+							left: 214px;
+						}
+					}
+				}
+			}
+		}
+	}
+}
 
 // 임시
 .box {
