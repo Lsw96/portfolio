@@ -1,8 +1,10 @@
 import React, { useRef, useEffect } from 'react';
 import { gsap } from 'gsap';
 import { ScrollToPlugin } from 'gsap/ScrollToPlugin';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 gsap.registerPlugin(ScrollToPlugin);
+gsap.registerPlugin(ScrollTrigger);
 
 // redux
 import { useDispatch, useSelector } from 'react-redux';
@@ -19,6 +21,8 @@ import { debounce } from '@utils/debounce';
 import styles from '@scss/components/intro.module.scss';
 
 const Intro: React.FC = () => {
+	const sectionRef = useRef<HTMLDivElement | null>(null);
+	const ani1Ref = useRef<HTMLDivElement | null>(null);
 	const intro1Ref = useRef<HTMLDivElement | null>(null);
 	const stars = useSelector((state: { stars: { stars: Star[] } }) => state.stars.stars);
 	const dispatch = useDispatch();
@@ -28,8 +32,8 @@ const Intro: React.FC = () => {
 		if (intro1Ref.current) {
 			gsap.to(window, {
 				scrollTo: { y: intro1Ref.current.offsetTop, autoKill: false },
-				duration: 1.425,
-				ease: 'power1.Out',
+				duration: 1.25,
+				ease: 'ease',
 				delay: 0.15,
 			});
 		}
@@ -52,18 +56,35 @@ const Intro: React.FC = () => {
 		const handleResize = debounce(() => {
 			generateStars(); // 화면 크기 변경 시 별 재생성
 		}, 200); // 200ms로 디바운스 설정
-        
+
 		window.addEventListener('resize', handleResize);
 		return () => window.removeEventListener('resize', handleResize); // 컴포넌트 언마운트 시 리스너 제거
 	}, [dispatch]);
 
+	useEffect(() => {
+		if (sectionRef.current && ani1Ref) {
+			gsap.to(ani1Ref.current, {
+                autoAlpha: 0,
+				scrollTrigger: {
+					trigger: sectionRef.current,
+					start: 'top top',
+					end: '+=650',
+					scrub: true,
+				},
+			});
+		}
+		return () => {
+			ScrollTrigger.getAll().forEach(trigger => trigger.kill());
+		};
+	}, []);
+
 	return (
 		<>
-			<main className={styles.visual}>
+			<main className={styles.visual} ref={sectionRef}>
 				{stars.map(star => (
 					<Stars key={star.id} {...star} />
 				))}
-				<section className={styles.textWrapper}>
+				<section className={styles.textWrapper} ref={ani1Ref}>
 					<h1 className={styles.title}>
 						<span
 							className={`${styles.smallText} ${styles.glitch}`}
