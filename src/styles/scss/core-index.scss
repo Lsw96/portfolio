@@ -1,5 +1,7 @@
-@use './components/intro.module';
 @use './components/header.module';
+@use './components/Intro/intro1.module';
+@use './components/Intro/intro2.module';
+@use './components/Intro/intro3.module';
 
 @forward './abstracts/variables';
 @forward './abstracts/mixins';
@@ -7,4 +9,3 @@
 @import './base/reset';
 @import './base/font';
 @import './layout/body';
-
