@@ -1,95 +1,109 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useEffect, useCallback } from 'react';
+
+// gsap
 import { gsap } from 'gsap';
 import { ScrollToPlugin } from 'gsap/ScrollToPlugin';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-
-gsap.registerPlugin(ScrollToPlugin);
-gsap.registerPlugin(ScrollTrigger);
+gsap.registerPlugin(ScrollToPlugin, ScrollTrigger);
 
 // redux
 import { useDispatch, useSelector } from 'react-redux';
 import { initializeStars, Star } from '@store/slices/starsSlice';
 
-// components
-import Stars from '@components/Star';
-
 // utils
 import { getMainArea, getCenterArea, createStar } from '@utils/starArea';
 import { debounce } from '@utils/debounce';
 
+// components
+import Stars from '@components/Star';
+
 // styles
 import styles from '@scss/components/intro.module.scss';
 
-const Intro: React.FC = () => {
-	const sectionRef = useRef<HTMLDivElement | null>(null);
-	const textWrapRef = useRef<HTMLDivElement | null>(null);
-	const iconWrapRef = useRef<HTMLDivElement | null>(null);
-	const braketWrapRef = useRef<HTMLDivElement | null>(null);
-	const intro1Ref = useRef<HTMLDivElement | null>(null);
-	const rotateRef = useRef<HTMLDivElement | null>(null);
-	const stars = useSelector((state: { stars: { stars: Star[] } }) => state.stars.stars);
+const useAnimationRefs = () => {
+	return {
+		section: useRef<HTMLDivElement | null>(null),
+		textWrap: useRef<HTMLDivElement | null>(null),
+		iconWrap: useRef<HTMLDivElement | null>(null),
+		braketWrap: useRef<HTMLDivElement | null>(null),
+		rotate: useRef<HTMLDivElement | null>(null),
+		intro1: useRef<HTMLDivElement | null>(null),
+	};
+};
+
+// 별 생성 로직을 관리할 커스텀 훅
+const useInitializeStars = () => {
 	const dispatch = useDispatch();
 
-	// 화면 스크롤을 다음영역으로 이동시키는 함수
-	const handleScrollToIntro = () => {
-		if (intro1Ref.current) {
-			gsap.to(window, {
-				scrollTo: { y: intro1Ref.current.offsetTop, autoKill: false },
-				duration: 1.25,
-				ease: 'ease',
-				delay: 0.15,
-			});
-		}
-	};
-
-	// 별을 생성하는 함수 (화면 중앙 영역을 피해 생성)
-	const generateStars = () => {
-		const mainArea = getMainArea(); // main 태그의 영역 계산
-		const centerArea = getCenterArea(mainArea); // 중앙 영역 계산
+    // 별 생성 함수
+	const generateStars = useCallback(() => {
+		const mainArea = getMainArea();
+		const centerArea = getCenterArea(mainArea);
 		const generatedStars = Array.from({ length: 14 }, (_, i) =>
 			createStar(i, mainArea, centerArea),
 		);
-		dispatch(initializeStars(generatedStars)); // Redux에 저장
-	};
-	// 컴포넌트 마운트 시 별 생성 및 리사이즈 이벤트 등록
+		dispatch(initializeStars(generatedStars));
+	}, [dispatch]);
+
+	// 컴포넌트 마운트 시 별 생성 및 리사이즈 이벤트 호출
 	useEffect(() => {
 		generateStars();
-
-		const handleResize = debounce(() => {
-			generateStars(); // 화면 크기 변경 시 별 재생성
-		}, 200); // 200ms로 디바운스 설정
-
+		const handleResize = debounce(generateStars, 200);
 		window.addEventListener('resize', handleResize);
-		return () => window.removeEventListener('resize', handleResize); // 컴포넌트 언마운트 시 리스너 제거
-	}, [dispatch]);
+		return () => window.removeEventListener('resize', handleResize);
+	}, [generateStars]);
+};
+
+const Intro: React.FC = () => {
+	const { section, textWrap, iconWrap, braketWrap, rotate, intro1 } = useAnimationRefs();
+	const stars = useSelector((state: { stars: { stars: Star[] } }) => state.stars.stars);
+	useInitializeStars();
+
+	// BUTTON | 클릭 시 화면 스크롤을 다음 영역으로 이동
+	const handleScrollToIntro = () => {
+		if (intro1.current) {
+			gsap.to(window, {
+				scrollTo: { y: intro1.current.offsetTop, autoKill: false },
+				duration: 0.69,
+				ease: 'ease',
+				delay: 0.14,
+			});
+		}
+	};
 
 	// GSAP 메인태그 애니메이션 | FadeOut 설정
 	useEffect(() => {
-		if (sectionRef.current && textWrapRef.current && iconWrapRef.current) {
-			gsap.to([textWrapRef.current, iconWrapRef.current], {
-				autoAlpha: 0,
-				scrollTrigger: {
-					trigger: sectionRef.current,
-					start: 'top top',
-					end: '+=650',
-					scrub: true,
-				},
-			});
-			gsap.from(braketWrapRef.current, {
-				left: "-5%",
-				opacity: 0,
-				delay: 1.28,
-				duration: 0.8,
-				ease: 'back.out',
-			});
-			gsap.from(rotateRef.current, {
-				right: "10%",
-				opacity: 0,
-				delay: 1.6,
-				duration: 0.68,
-				ease: 'back.out',
-			});
-		}
+		const animateIntro = () => {
+			if (section.current && textWrap.current && iconWrap.current) {
+				gsap.to([textWrap.current, iconWrap.current], {
+					autoAlpha: 0,
+					scrollTrigger: {
+						trigger: section.current,
+						start: 'top top',
+						end: '+=650',
+						scrub: true,
+					},
+				});
+
+				// GSAP 메인태그 애니메이션 | 브라켓 및 회전 아이콘 설정
+				gsap.from(braketWrap.current, {
+					left: '-5%',
+					opacity: 0,
+					delay: 1.28,
+					duration: 0.8,
+					ease: 'back.out',
+				});
+
+				gsap.from(rotate.current, {
+					right: '10%',
+					opacity: 0,
+					delay: 1.6,
+					duration: 0.68,
+					ease: 'back.out',
+				});
+			}
+		};
+
 		return () => {
 			ScrollTrigger.getAll().forEach(trigger => trigger.kill());
 		};
@@ -97,27 +111,27 @@ const Intro: React.FC = () => {
 
 	return (
 		<>
-			<main className={styles.visual} ref={sectionRef}>
+			<main className={styles.visual} ref={section}>
 				{stars.map(star => (
 					<Stars key={star.id} {...star} />
 				))}
 
-				<div className={styles.iconWrap} ref={iconWrapRef}>
+				<div className={styles.iconWrap} ref={iconWrap}>
 					<i className={`${styles.sprite_i} ${styles.typescript}`} />
 					<i className={`${styles.sprite_i} ${styles.javascript}`} />
 					<i className={`${styles.sprite_i} ${styles.react}`} />
 					<i className={`${styles.sprite_ic} ${styles.money}`} />
-					<i className={`${styles.sprite_ic} ${styles.rotate}`} ref={rotateRef} />
+					<i className={`${styles.sprite_ic} ${styles.rotate}`} ref={rotate} />
 					<i className={styles.line} />
 					<i className={`${styles.arrow} ${styles.arrowLeft}`} />
 					<i className={`${styles.arrow} ${styles.arrowRight}`} />
-					<div className={styles.braketWrap} ref={braketWrapRef}>
+					<div className={styles.braketWrap} ref={braketWrap}>
 						<i className={`${styles.braket} ${styles.braketLeft}`} />
 						<i className={`${styles.braket} ${styles.braketRight}`} />
 					</div>
 				</div>
 
-				<section className={styles.textWrap} ref={textWrapRef}>
+				<section className={styles.textWrap} ref={textWrap}>
 					<h1 className={styles.title}>
 						<span
 							className={`${styles.smallText} ${styles.glitch}`}
@@ -145,7 +159,7 @@ const Intro: React.FC = () => {
 				</section>
 			</main>
 
-			<div className={styles.box} ref={intro1Ref}>
+			<div className={styles.box} ref={intro1}>
 				<p>Intro1</p>
 			</div>
 			<div className={styles.box}>
