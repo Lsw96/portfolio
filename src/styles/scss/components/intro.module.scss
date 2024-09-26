@@ -5,13 +5,14 @@
 .star {
 	position: absolute;
 	border-radius: 50%;
-	background-color: #f6f6f6;
+	background-color: $white-color;
 }
 
+// 임시
 .box {
 	@include heightSize;
 	@include flex(column);
-    color: #fff;
+    color: white;
 }
 
 .visual {
@@ -65,7 +66,7 @@
 	padding: 12px 18px;
     font-size: clamp(11px, 1.5vw, 18px);
 	font-family: $base-font;
-	color: #333;
+	color: $gray8-color;
 	letter-spacing: 0.5px;
     white-space: nowrap;
 	opacity: 0;
@@ -87,7 +88,7 @@
 	&::before {
 		content: attr(data-wave);
 		position: absolute;
-		color: #666;
+		color: $gray6-color;
 		animation: wave 3s ease-in-out infinite;
 		@keyframes wave {
 			0%,
@@ -129,7 +130,7 @@
 	padding: 12px 18px;
 	font-family: inherit;
 	font-size: 14px;
-	color: #fff;
+	color: white;
 	letter-spacing: 0.9px;
 	transition: translateY 0.3s ease;
     transform: translate(-50%, 0);
@@ -174,6 +175,6 @@
 	}
 
 	&:hover::before {
-		border-left: 16px solid #fff;
+		border-left: 16px solid white;
 	}
 }
