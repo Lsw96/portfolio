@@ -10,6 +10,7 @@ body {
 	font-variant-numeric: slashed-zero; // 슬래시 0 숫자 만들기
 	line-height: 1.5;
     box-sizing: border-box;
+    cursor: url('/cursor/cursor_default.svg'), auto;
 }
 
 #root {
@@ -20,10 +21,4 @@ body {
 
 #App {
     background-color: #1a1c20;
-}
-
-@media screen and (max-width: 720px) {
-	body {
-		font-size: 0.75rem; // 12px
-	}
 }
