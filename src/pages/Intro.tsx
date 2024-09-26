@@ -76,14 +76,14 @@ const Intro: React.FC = () => {
 				},
 			});
 			gsap.from(braketWrapRef.current, {
-				left: -50,
+				left: "-5%",
 				opacity: 0,
 				delay: 1.28,
 				duration: 0.8,
 				ease: 'back.out',
 			});
 			gsap.from(rotateRef.current, {
-				right: 186,
+				right: "10%",
 				opacity: 0,
 				delay: 1.6,
 				duration: 0.68,
