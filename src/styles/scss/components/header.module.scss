@@ -10,7 +10,7 @@
 	max-width: 1920px;
 	height: 84px;
 	margin: 0 auto;
-    background: linear-gradient(to top, rgba(12, 12, 12, 0), #0c0c0c);
+    background: linear-gradient(to top, rgba(12, 12, 12, 0), $black-color);
 }
 
 .container {
@@ -45,16 +45,16 @@
 }
 
 .navList {
-	display: flex;
+    display: flex;
 	gap: 18px;
 	> li {
-		color: #f6f6f6;
+        color: $white-color;
 		width: 100px;
 		height: 90px;
 		transition: all 0.3s ease;
 		transform: translateY(0);
 		&:hover {
-			color: $primary-color;
+            color: $primary-color;
 			transform: translateY(-6px);
 		}
 		> a {
