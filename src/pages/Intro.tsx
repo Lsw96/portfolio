@@ -13,14 +13,15 @@ import Stars from '@components/Star';
 
 // utils
 import { getMainArea, getCenterArea, createStar } from '@utils/starArea';
+import { debounce } from '@utils/debounce';
 
 // styles
 import styles from '@scss/components/intro.module.scss';
 
 const Intro: React.FC = () => {
 	const intro1Ref = useRef<HTMLDivElement | null>(null);
-	const dispatch = useDispatch();
 	const stars = useSelector((state: { stars: { stars: Star[] } }) => state.stars.stars);
+	const dispatch = useDispatch();
 
 	// 화면 스크롤을 다음영역으로 이동시키는 함수
 	const handleScrollToIntro = () => {
@@ -47,7 +48,11 @@ const Intro: React.FC = () => {
 	// 컴포넌트 마운트 시 별 생성 및 리사이즈 이벤트 등록
 	useEffect(() => {
 		generateStars();
-		const handleResize = () => generateStars(); // 화면 크기 변경 시 별 재생성
+
+		const handleResize = debounce(() => {
+			generateStars(); // 화면 크기 변경 시 별 재생성
+		}, 200); // 200ms로 디바운스 설정
+        
 		window.addEventListener('resize', handleResize);
 		return () => window.removeEventListener('resize', handleResize); // 컴포넌트 언마운트 시 리스너 제거
 	}, [dispatch]);
@@ -61,24 +66,24 @@ const Intro: React.FC = () => {
 				<section className={styles.textWrapper}>
 					<h1 className={styles.title}>
 						<span
+							className={`${styles.smallText} ${styles.glitch}`}
+							data-glitch="LEESEONGWOO"
+						>
+							LEESEONGWOO
+						</span>
+						<span
 							className={`${styles.largeText} ${styles.glitch}`}
 							data-glitch="PORTFOLIO"
 						>
 							PORTFOLIO
 						</span>
 						<span
-							className={`${styles.smallText} ${styles.glitch}`}
-							data-glitch="LEESEONGWOO"
+							className={styles.contentText}
+							data-wave="인터랙티브한 웹 디자인에 관심이 많은 프런트엔드 개발자"
 						>
-							LEESEONGWOO
+							인터랙티브한 웹 디자인에 관심이 많은 프런트엔드 개발자
 						</span>
 					</h1>
-					<span
-						className={styles.contentText}
-						data-wave="인터랙티브한 웹 디자인에 관심이 많은 프런트엔드 개발자"
-					>
-						인터랙티브한 웹 디자인에 관심이 많은 프런트엔드 개발자
-					</span>
 
 					<button className={styles.startBtn} onClick={handleScrollToIntro}>
 						LET ME INTRODUCE MYSELF
@@ -87,10 +92,10 @@ const Intro: React.FC = () => {
 			</main>
 
 			<div className={styles.box} ref={intro1Ref}>
-				<p className={styles.title}>Intro1</p>
+				<p>Intro1</p>
 			</div>
 			<div className={styles.box}>
-				<p className={styles.title}>Intro2</p>
+				<p>Intro2</p>
 			</div>
 		</>
 	);
