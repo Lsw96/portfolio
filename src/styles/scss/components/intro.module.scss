@@ -11,6 +11,7 @@
 .box {
 	@include heightSize;
 	@include flex(column);
+    color: #fff;
 }
 
 .visual {
@@ -20,28 +21,30 @@
 .textWrapper {
     overflow: hidden;
 	position: relative;
-	@include flex(column, flex-start);
-	gap: 64px;
 	font-family: $base-Bold-font;
+    height: 100%;
 }
 
 .title {
 	user-select: none;
-	@include flex(column-reverse);
-	margin-top: 68px;
+	@include flex(column);
+    position: absolute;
+    top: 35%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 	font-family: inherit;
 	line-height: 1;
 	color: $white-color;
 
 	.largeText {
 		height: 100%;
-		font-size: 124px;
+        font-size: clamp(48px, 10vw, 124px);
 		opacity: 0;
 		@include fadeIn(0.8s, 0.12s);
 	}
 	.smallText {
 		height: 100%;
-		font-size: 52px;
+        font-size: clamp(20px, 5.125vw, 52px);
 		color: $primary-color;
 		opacity: 0;
 		@include fadeIn(1s, 0.24s);
@@ -58,13 +61,15 @@
 
 .contentText {
 	position: relative;
-	color: #333;
-	font-size: 18px;
-	font-family: $base-font;
-	letter-spacing: 0.5px;
+    margin-top: 68px;
 	padding: 12px 18px;
-	transition: all 1s ease;
+    font-size: clamp(11px, 1.5vw, 18px);
+	font-family: $base-font;
+	color: #333;
+	letter-spacing: 0.5px;
+    white-space: nowrap;
 	opacity: 0;
+	transition: all .5s ease;
 	animation: moveFadeIn 0.8s 0.36s ease-in-out forwards;
 	@keyframes moveFadeIn {
 		0% {
@@ -118,17 +123,19 @@
 
 .startBtn {
 	position: relative;
-	margin-top: 118px;
+    bottom: -50%;
+    left: 50%;
+	margin-top: 204px;
 	padding: 12px 18px;
 	font-family: inherit;
 	font-size: 14px;
 	color: #fff;
 	letter-spacing: 0.9px;
 	transition: translateY 0.3s ease;
-	transform: translateY(0);
+    transform: translate(-50%, 0);
 	&:hover {
 		color: $primary-color;
-		transform: translateY(-2px);
+		transform: translate(-50%, -2px);
 	}
 	opacity: 0;
 	@include fadeIn(1.125s, 0.875s);
