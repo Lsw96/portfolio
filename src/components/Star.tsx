@@ -1,8 +1,5 @@
 import React from 'react';
 
-// styles
-import styles from '@scss/components/intro.module.scss';
-
 interface StarProps {
 	id: number;
 	size: number;
@@ -14,8 +11,10 @@ const Star: React.FC<StarProps> = ({ id, size, left, top }) => {
 	return (
 		<i
 			key={id}
-			className={styles.star}
 			style={{
+                position: 'absolute',
+                borderRadius: '25px',
+                backgroundColor: '#f6f6f6',
 				width: `${size}px`,
 				height: `${size}px`,
 				left: `${left}px`,

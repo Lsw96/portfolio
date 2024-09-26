@@ -2,50 +2,195 @@
 @use '../components//glitch.scss';
 @import '@scss/abstracts/mixins.scss';
 
-.star {
+.iconWrap {
 	position: absolute;
-	border-radius: 50%;
-	background-color: $white-color;
+	top: 0;
+	left: 0;
+	right: 0;
+	max-width: 1920px;
+	@include heightSize;
+	margin: 0 auto;
+	.sprite_i {
+		display: block;
+		position: absolute;
+		width: 48px;
+		height: 48px;
+		opacity: 0;
+		&.javascript {
+			bottom: 40%;
+			right: 12.5%;
+			background: url('@icons/Intro_sprites.png') -10px -10px;
+			@include fadeIn(0.6s, 0.54s, true);
+			transform-origin: top left;
+		}
+		&.react {
+			top: 15%;
+			left: 17.5%;
+			background: url('@icons/Intro_sprites.png') -78px -10px;
+			@include fadeIn(0.48s, 0.18s, true);
+			transform-origin: bottom right;
+		}
+		&.typescript {
+			top: 24%;
+			left: 80%;
+			background: url('@icons/Intro_sprites.png') -10px -78px;
+			@include fadeIn(0.6s, 0.3s, true);
+			transform-origin: bottom left;
+		}
+	}
+	.sprite_ic {
+		display: block;
+		position: absolute;
+		width: 38px;
+		height: 38px;
+		&.rotate {
+			position: absolute;
+			top: 12%;
+			right: 14%;
+			display: block;
+			background: url('@icons/Intro_sprites.png') -197px -10px;
+			animation: rotateRotation 4.18s linear infinite;
+			@keyframes rotateRotation {
+				0% {
+					transform: rotate(0);
+				}
+				100% {
+					transform: rotate(-360deg);
+				}
+			}
+		}
+		&.money {
+			display: block;
+			position: absolute;
+			top: 48%;
+			left: 22.5%;
+			background: url('@icons/Intro_sprites.png') -78px -78px;
+			opacity: 0;
+			@include fadeIn(0.58s, 0.42s, true);
+			transform-origin: top right;
+		}
+	}
+	.line {
+		display: block;
+		position: absolute;
+		bottom: 42%;
+		right: 32.5%;
+		width: 38px;
+		height: 12px;
+		background: url('@icons/Intro_sprites.png') -197px -68px;
+		opacity: 0;
+		animation: lineMoveAni 0.64s 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
+		@keyframes lineMoveAni {
+			0% {
+				opacity: 0;
+				transform: scale(0);
+				right: 28.5%;
+			}
+			100% {
+				opacity: 1;
+				transform: scale(1);
+				right: 32.5%;
+			}
+		}
+	}
+	.arrow {
+		display: block;
+		position: absolute;
+		width: 48px;
+		height: 28px;
+		&.arrowLeft {
+			top: 35%;
+			right: 0.5%;
+			background: url('@icons/Intro_sprites.png') -10px -146px;
+			opacity: 0;
+			@include fadeIn(0.7s, 0.58s);
+		}
+		&.arrowRight {
+			top: -0.25%;
+			left: 30%;
+			transform: rotate(180deg);
+			background: url('@icons/Intro_sprites.png') -10px -146px;
+			opacity: 0;
+			@include fadeIn(0.418s, 0.46s);
+		}
+	}
+	.braketWrap {
+		position: absolute;
+		bottom: 32.5%;
+		.braket {
+			position: absolute;
+			display: block;
+			width: 31px;
+			height: 62px;
+			&.braketLeft {
+				left: 246px;
+				background: url('@icons/Intro_sprites.png') -146px -10px;
+				animation: braketMoveLeft 1.5s ease infinite alternate;
+				@keyframes braketMoveLeft {
+					0% {
+						left: 246px;
+					}
+					100% {
+						left: 226px;
+					}
+				}
+			}
+			&.braketRight {
+				left: 304px;
+				transform: rotate(180deg);
+				background: url('@icons/Intro_sprites.png') -146px -10px;
+				animation: braketMoveRight 1.5s ease infinite alternate;
+				@keyframes braketMoveRight {
+					0% {
+						left: 304px;
+					}
+					100% {
+						left: 324px;
+					}
+				}
+			}
+		}
+	}
 }
 
 // 임시
 .box {
 	@include heightSize;
 	@include flex(column);
-    color: white;
+	color: white;
 }
 
 .visual {
 	@include heightSize;
 }
 
-.textWrapper {
-    overflow: hidden;
+.textWrap {
+	overflow: hidden;
 	position: relative;
 	font-family: $base-Bold-font;
-    height: 100%;
+	height: 100%;
 }
 
 .title {
 	user-select: none;
 	@include flex(column);
-    position: absolute;
-    top: 35%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+	position: absolute;
+	top: 35%;
+	left: 50%;
+	transform: translate(-50%, -50%);
 	font-family: inherit;
 	line-height: 1;
 	color: $white-color;
 
 	.largeText {
 		height: 100%;
-        font-size: clamp(48px, 10vw, 124px);
+		font-size: clamp(48px, 10vw, 124px);
 		opacity: 0;
 		@include fadeIn(0.8s, 0.12s);
 	}
 	.smallText {
 		height: 100%;
-        font-size: clamp(20px, 5.125vw, 52px);
+		font-size: clamp(20px, 5.125vw, 52px);
 		color: $primary-color;
 		opacity: 0;
 		@include fadeIn(1s, 0.24s);
@@ -62,16 +207,19 @@
 
 .contentText {
 	position: relative;
-    margin-top: 68px;
+	margin-top: 68px;
 	padding: 12px 18px;
-    font-size: clamp(11px, 1.5vw, 18px);
+	font-size: clamp(11px, 1.5vw, 18px);
 	font-family: $base-font;
 	color: $gray8-color;
 	letter-spacing: 0.5px;
-    white-space: nowrap;
+	white-space: nowrap;
+	&:hover {
+		color: $gray4-color;
+	}
 	opacity: 0;
-	transition: all .5s ease;
-	animation: moveFadeIn 0.8s 0.36s ease-in-out forwards;
+	transition: all 0.5s ease;
+	animation: moveFadeIn 0.618s 1.6s ease-in-out forwards;
 	@keyframes moveFadeIn {
 		0% {
 			opacity: 0;
@@ -88,7 +236,7 @@
 	&::before {
 		content: attr(data-wave);
 		position: absolute;
-		color: $gray6-color;
+		color: $gray4-color;
 		animation: wave 3s ease-in-out infinite;
 		@keyframes wave {
 			0%,
@@ -124,8 +272,8 @@
 
 .startBtn {
 	position: relative;
-    bottom: -50%;
-    left: 50%;
+	bottom: -50%;
+	left: 50%;
 	margin-top: 204px;
 	padding: 12px 18px;
 	font-family: inherit;
@@ -133,13 +281,13 @@
 	color: white;
 	letter-spacing: 0.9px;
 	transition: translateY 0.3s ease;
-    transform: translate(-50%, 0);
+	transform: translate(-50%, 0);
 	&:hover {
 		color: $primary-color;
 		transform: translate(-50%, -2px);
 	}
 	opacity: 0;
-	@include fadeIn(1.125s, 0.875s);
+	@include fadeIn(1.125s, 1.8s);
 
 	&::before {
 		content: '';
@@ -151,15 +299,12 @@
 		border-top: 8px solid transparent;
 		border-bottom: 8px solid transparent;
 		border-left: 16px solid $primary-color;
-		border-radius: 2px;
 		animation: moveArrow 1.25s 0.425s cubic-bezier(0.34, 1.46, 0.92, 1) infinite
 			alternate-reverse;
 		@keyframes moveArrow {
 			0% {
-				transform: translate(-16px, -50%);
+				transform: translate(-32px, -50%);
 				opacity: 0;
-				border-top: 5px solid transparent;
-				border-bottom: 5px solid transparent;
 			}
 			5% {
 				opacity: 0.5;

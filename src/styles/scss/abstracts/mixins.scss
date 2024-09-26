@@ -38,8 +38,12 @@
 ===============================================
     Animation
 =============================================== */
-@mixin fadeIn($duration: 1s, $delay: 0s) {
+@mixin fadeIn($duration: 1s, $delay: 0s, $scale: false) {
 	animation: fadeIn $duration ease-in-out $delay forwards;
+
+    @if $scale {
+		animation: fadeInScale $duration cubic-bezier(0.68, -0.55, 0.265, 1.55) $delay forwards;
+	}
 }
 @keyframes fadeIn {
 	0% {
@@ -47,5 +51,15 @@
 	}
 	100% {
 		opacity: 1;
+	}
+}
+@keyframes fadeInScale {
+	0% {
+		opacity: 0;
+		transform: scale(0);
+	}
+	100% {
+		opacity: 1;
+		transform: scale(1);
 	}
 }
