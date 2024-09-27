@@ -1,0 +1,46 @@
+@use '@scss/abstracts/variables.scss' as *;
+@import '@scss/abstracts/mixins.scss';
+
+.progress {
+    z-index: 1818;
+    position: fixed;
+    right: 2.8rem;
+    top: 0;
+    width: 0%;
+    height: 100%;
+    @include flex(column);
+    gap: 4.18rem;
+    text-transform: uppercase;
+    white-space: nowrap;
+    p {
+        font-size: 1rem;
+        color: $white-color;
+        transform: rotate(90deg);
+        background: transparent;
+    }
+    .scrollBg {
+        z-index: -1;
+        position: relative;
+        width: 1px;
+        height: 50%;
+        display: flex;
+        align-items: start;
+        background: rgba(255, 255, 255, 0.24);
+        .scrollProgress {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translate(-50%);
+            background: $primary-color;
+            width: 2px;
+            height: 0%;
+            margin: 0 auto;
+        }
+    }
+}
+
+@include mobile {
+    .progress {
+        display: none;
+    }
+}
