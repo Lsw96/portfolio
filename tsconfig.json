@@ -26,5 +26,5 @@
 		"noFallthroughCasesInSwitch": true, // switch 문에서 case가 자동으로 넘어가지 않게 설정.
 		"useUnknownInCatchVariables": false // catch 구문에 대한 타입을 명시적으로 설정
 	},
-	"include": ["src", "global.d.ts"] 
+	"include": ["src", "global.d.ts"]
 }
