@@ -4,9 +4,9 @@ import React from 'react';
 import styles from '@scss/components/Intro/intro3.module.scss';
 
 const Intro3: React.FC = () => (
-	<div className={styles.box}>
+	<section className={styles.box}>
 		<p>Intro3</p>
-	</div>
+	</section>
 );
 
 export default Intro3;

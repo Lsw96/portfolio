@@ -1,8 +1,10 @@
 @use '@scss/abstracts/variables.scss' as *;
 @import '@scss/abstracts/mixins.scss';
 
-.box {
+.container {
 	@include heightSize;
-	@include flex(column);
-	color: white;
+	@include flex();
+}
+.profileWrap {
+
 }

@@ -1,24 +1,33 @@
 @use '../abstracts/variables' as *;
 
+* {
+	box-sizing: border-box;
+}
+
 html,
 body {
-    min-width: 364px;
+	min-width: 364px;
 	height: 100%;
-	font-size: 1rem; // 16px
+	font-size: 62.5%;
 	font-family: $base-font;
 	font-variant-numeric: tabular-nums; // 숫자 고정폭
 	font-variant-numeric: slashed-zero; // 슬래시 0 숫자 만들기
 	line-height: 1.5;
-    box-sizing: border-box;
-    cursor: url('/cursor/cursor_default.svg'), auto;
+	cursor: url('/cursor/cursor_default.svg'), auto;
+
+	&::-webkit-scrollbar {
+		display: none;
+	}
+	-ms-overflow-style: none;
+	scrollbar-width: none;
 }
 
 #root {
-    margin: 0;
-    padding: 0;
-    border: 0;
+	margin: 0;
+	padding: 0;
+	border: 0;
 }
 
 #App {
-    background-color: #1a1c20;
+	background-color: #1a1c20;
 }

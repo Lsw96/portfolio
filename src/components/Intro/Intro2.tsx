@@ -1,13 +1,30 @@
-import React, { forwardRef } from 'react';
+import React, { forwardRef, useRef } from 'react';
+
+// hooks
+import Images from '@hooks/Image';
+
+// images
+import profileImg from '@images/profile.png';
 
 // styles
 import styles from '@scss/components/Intro/intro2.module.scss';
 
-// forwardRef를 사용하여 부모 컴포넌트에서 ref를 전달받음
-const Intro2 = forwardRef<HTMLDivElement, React.PropsWithChildren<{}>>((props, ref) => (
-	<div className={styles.box} ref={ref}>
-		<p>Intro2</p>
-	</div>
-));
+const useRefs = () => {
+	return {
+		profile: useRef<HTMLImageElement | null>(null),
+	};
+};
+
+const Intro2 = forwardRef<HTMLDivElement, React.PropsWithChildren<{}>>((props, ref) => {
+	const { profile } = useRefs();
+
+	return (
+		<section className={styles.container} ref={ref}>
+			<div className={styles.profileWrap} ref={profile}>
+				<Images src={profileImg} alt={'이성우 이미지'} className={styles.profileImg} />
+			</div>
+		</section>
+	);
+});
 
 export default Intro2;

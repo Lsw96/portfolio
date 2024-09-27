@@ -73,8 +73,8 @@
 	.line {
 		display: block;
 		position: absolute;
-		bottom: 42%;
-		right: 32.5%;
+		bottom: 28%;
+		right: 27%;
 		width: 38px;
 		height: 12px;
 		background: url('@icons/Intro_sprites.png') -197px -68px;
@@ -84,12 +84,12 @@
 			0% {
 				opacity: 0;
 				transform: scale(0);
-				right: 28.5%;
+				right: 23%;
 			}
 			100% {
 				opacity: 1;
 				transform: scale(1);
-				right: 32.5%;
+				right: 28%;
 			}
 		}
 	}
@@ -98,21 +98,12 @@
 		position: absolute;
 		width: 48px;
 		height: 28px;
-		&.arrowLeft {
-			top: 35%;
-			right: 0.5%;
-			background: url('@icons/Intro_sprites.png') -10px -146px;
-			opacity: 0;
-			@include fadeIn(0.7s, 0.58s);
-		}
-		&.arrowRight {
-			top: -0.25%;
-			left: 30%;
-			transform: rotate(180deg);
-			background: url('@icons/Intro_sprites.png') -10px -146px;
-			opacity: 0;
-			@include fadeIn(0.418s, 0.46s);
-		}
+		top: -0.25%;
+		left: 30%;
+		transform: rotate(180deg);
+		background: url('@icons/Intro_sprites.png') -10px -146px;
+		opacity: 0;
+		@include fadeIn(0.418s, 0.46s);
 	}
 	.braketWrap {
 		position: absolute;
@@ -160,7 +151,7 @@
 				right: 5%;
 			}
 			&.react {
-				left: 5%;
+				left: 15%;
 			}
 			&.typescript {
 				top: 17.5%;
@@ -259,42 +250,40 @@
 	position: relative;
 	font-family: $base-Bold-font;
 	height: 100%;
-}
+	.title {
+		user-select: none;
+		@include flex(column);
+		position: absolute;
+		top: 35%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		font-family: inherit;
+		line-height: 1;
+		color: $white-color;
 
-.title {
-	user-select: none;
-	@include flex(column);
-	position: absolute;
-	top: 35%;
-	left: 50%;
-	transform: translate(-50%, -50%);
-	font-family: inherit;
-	line-height: 1;
-	color: $white-color;
-
-	.largeText {
-		height: 100%;
-		font-size: clamp(48px, 10vw, 124px);
-		opacity: 0;
-		@include fadeIn(0.8s, 0.12s);
-	}
-	.smallText {
-		height: 100%;
-		font-size: clamp(20px, 5.125vw, 52px);
-		color: $primary-color;
-		opacity: 0;
-		@include fadeIn(1s, 0.24s);
-
-		&.glitch {
+		.largeText {
+			height: 100%;
+			font-size: clamp(48px, 10vw, 124px);
+			opacity: 0;
+			@include fadeIn(0.8s, 0.12s);
+		}
+		.smallText {
+			height: 100%;
+			font-size: clamp(20px, 5.125vw, 52px);
 			color: $primary-color;
-			&::before,
-			&::after {
+			opacity: 0;
+			@include fadeIn(1s, 0.24s);
+
+			&.glitch {
 				color: $primary-color;
+				&::before,
+				&::after {
+					color: $primary-color;
+				}
 			}
 		}
 	}
 }
-
 .contentText {
 	position: relative;
 	margin-top: 68px;

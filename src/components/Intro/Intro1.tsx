@@ -111,27 +111,26 @@ const Intro1 = forwardRef<
 
 	return (
 		<>
-			<main className={styles.visual} ref={section}>
+			<section className={styles.visual} ref={section}>
 				{stars.map(star => (
 					<Stars key={star.id} {...star} />
 				))}
 
-				<div className={styles.iconWrap} ref={iconWrap}>
+				<article className={styles.iconWrap} ref={iconWrap}>
 					<i className={`${styles.sprite_i} ${styles.typescript}`} />
 					<i className={`${styles.sprite_i} ${styles.javascript}`} />
 					<i className={`${styles.sprite_i} ${styles.react}`} />
 					<i className={`${styles.sprite_ic} ${styles.money}`} />
 					<i className={`${styles.sprite_ic} ${styles.rotate}`} ref={rotate} />
 					<i className={styles.line} />
-					<i className={`${styles.arrow} ${styles.arrowLeft}`} />
-					<i className={`${styles.arrow} ${styles.arrowRight}`} />
+					<i className={styles.arrow} />
 					<div className={styles.braketWrap} ref={braketWrap}>
 						<i className={`${styles.braket} ${styles.braketLeft}`} />
 						<i className={`${styles.braket} ${styles.braketRight}`} />
 					</div>
-				</div>
+				</article>
 
-				<section className={styles.textWrap} ref={textWrap}>
+				<article className={styles.textWrap} ref={textWrap}>
 					<h1 className={styles.title}>
 						<span
 							className={`${styles.smallText} ${styles.glitch}`}
@@ -156,8 +155,8 @@ const Intro1 = forwardRef<
 					<button className={styles.startBtn} onClick={handleScrollToIntro}>
 						LET ME INTRODUCE MYSELF
 					</button>
-				</section>
-			</main>
+				</article>
+			</section>
 		</>
 	);
 });
