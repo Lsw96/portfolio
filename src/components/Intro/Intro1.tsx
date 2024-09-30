@@ -11,8 +11,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { initializeStars, Star } from '@store/slices/starsSlice';
 
 // utils
-import { getMainArea, getCenterArea, createStar } from '@utils/starArea';
-import { debounce } from '@utils/debounce';
+import { getMainArea, getCenterArea, createStar } from '@components/utils/starArea';
+import { debounce } from '@components/utils/debounce';
 
 // components
 import Stars from '@components/Intro/Star';
@@ -32,27 +32,27 @@ const useAnimationRefs = () => {
 };
 
 // 별 생성 로직을 관리할 커스텀 훅
-const useInitializeStars = () => {
-	const dispatch = useDispatch();
+// const useInitializeStars = () => {
+// 	const dispatch = useDispatch();
 
-	// 별 생성 함수
-	const generateStars = useCallback(() => {
-		const mainArea = getMainArea();
-		const centerArea = getCenterArea(mainArea);
-		const generatedStars = Array.from({ length: 14 }, (_, i) =>
-			createStar(i, mainArea, centerArea),
-		);
-		dispatch(initializeStars(generatedStars));
-	}, [dispatch]);
+// 	// 별 생성 함수
+// 	const generateStars = useCallback(() => {
+// 		const mainArea = getMainArea();
+// 		const centerArea = getCenterArea(mainArea);
+// 		const generatedStars = Array.from({ length: 14 }, (_, i) =>
+// 			createStar(i, mainArea, centerArea),
+// 		);
+// 		dispatch(initializeStars(generatedStars));
+// 	}, [dispatch]);
 
-	// 컴포넌트 마운트 시 별 생성 및 리사이즈 이벤트 호출
-	useEffect(() => {
-		generateStars();
-		const handleResize = debounce(generateStars, 200);
-		window.addEventListener('resize', handleResize);
-		return () => window.removeEventListener('resize', handleResize);
-	}, [generateStars]);
-};
+// 	// 컴포넌트 마운트 시 별 생성 및 리사이즈 이벤트 호출
+// 	useEffect(() => {
+// 		generateStars();
+// 		const handleResize = debounce(generateStars, 200);
+// 		window.addEventListener('resize', handleResize);
+// 		return () => window.removeEventListener('resize', handleResize);
+// 	}, [generateStars]);
+// };
 
 const Intro1 = forwardRef<
 	HTMLDivElement,
@@ -60,7 +60,7 @@ const Intro1 = forwardRef<
 >((props, ref) => {
 	const { section, textWrap, iconWrap, braketWrap, rotate, intro1 } = useAnimationRefs();
 	const stars = useSelector((state: { stars: { stars: Star[] } }) => state.stars.stars);
-	useInitializeStars();
+	// useInitializeStars();
 
 	// BUTTON | 클릭 시 화면 스크롤을 다음 영역으로 이동
 	const handleScrollToIntro = () => {
@@ -77,8 +77,9 @@ const Intro1 = forwardRef<
 	// GSAP 메인태그 애니메이션 | FadeOut 설정
 	useEffect(() => {
 		if (section.current && textWrap.current && iconWrap.current) {
-			gsap.to([textWrap.current, iconWrap.current], {
+			gsap.to(textWrap.current, {
 				autoAlpha: 0,
+				filter: 'blur(5px)',
 				scrollTrigger: {
 					trigger: section.current,
 					start: 'top top',
@@ -97,10 +98,34 @@ const Intro1 = forwardRef<
 
 			gsap.from(rotate.current, {
 				right: '10%',
+				rotate: 45,
 				opacity: 0,
 				delay: 1.6,
 				duration: 0.68,
-				ease: 'back.out',
+				ease: 'ease',
+				onComplete: () => {
+					gsap.to(rotate.current, {
+						rotate: -360,
+						opacity: 1,
+						duration: 4.18,
+						ease: 'ease',
+					});
+				},
+			});
+
+            gsap.to(iconWrap.current, {
+				right: '50%',
+				rotate: 45,
+				opacity: 0,
+				filter: 'blur(50px)',
+				duration: 1,
+				ease: 'power1.inOut',
+				scrollTrigger: {
+					trigger: iconWrap.current,
+					start: 'top top',
+					end: '+=650',
+					scrub: true,
+				},
 			});
 		}
 

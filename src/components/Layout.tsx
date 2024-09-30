@@ -10,7 +10,7 @@ interface childrenProps {
 const Layout: React.FC<childrenProps> = ({ children }) => {
 	return (
 		<>
-			<main className={styles.container}>
+			<main className={styles.container} role='main'>
                 {children}
             </main>;
 		</>

@@ -1,0 +1,199 @@
+// 초기 설정
+* {
+	box-sizing: border-box;
+}
+
+html {
+	line-height: 1.25;
+	-webkit-text-size-adjust: 100%;
+	max-width: 100%;
+	overflow-x: hidden;
+}
+
+body {
+	font-family: $base-font, -apple-system, BlinkMacSystemFont, 'Malgun Gothic', '맑은 고딕',
+		helvetica, 'Apple SD Gothic Neo', sans-serif;
+	font-size: 62.5%; // 16px
+	font-weight: 500;
+	line-height: 1;
+	letter-spacing: -0.025rem;
+
+	font-variant-numeric: tabular-nums; // 숫자 고정폭
+	font-variant-numeric: slashed-zero; // 슬래시 0 숫자 만들기
+
+	font-synthesis: none;
+	text-rendering: optimizeLegibility;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+
+	-ms-overflow-style: none;
+	scrollbar-width: none;
+}
+
+body {
+	position: relative;
+	overflow-x: hidden;
+	width: 100%;
+	background: #000;
+	color: $color-white;
+	cursor: url('/cursor/cursor_default.svg'), auto;
+}
+
+::selection {
+	background: rgba(255, 255, 255, 0);
+	border-radius: 10px;
+	color: rgb(212, 0, 99);
+}
+
+::-webkit-scrollbar {
+	display: none;
+}
+// 로딩 중 스크롤 방지
+.no-scroll {
+	overflow-y: scroll;
+	position: fixed;
+	top: var(--scroll-top, 0);
+	left: 0;
+}
+
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 62.5%;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+	display: block;
+}
+ol,
+ul {
+	list-style: none;
+}
+blockquote,
+q {
+	quotes: none;
+}
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+button {
+	background: inherit;
+	border: none;
+	box-shadow: none;
+	border-radius: 0;
+	padding: 0;
+	overflow: visible;
+}
+a {
+	text-decoration: none;
+}
+
+#root {
+	margin: 0;
+	padding: 0;
+	border: 0;
+}

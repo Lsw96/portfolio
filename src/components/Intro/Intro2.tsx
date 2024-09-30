@@ -1,7 +1,7 @@
 import React, { forwardRef, useRef } from 'react';
 
 // hooks
-import Images from '@hooks/Image';
+import Images from '@components/hooks/Image';
 
 // images
 import profileImg from '@images/profile.png';

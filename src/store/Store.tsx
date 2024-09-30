@@ -2,13 +2,13 @@ import { configureStore } from '@reduxjs/toolkit';
 
 // slices
 import smoothScrollingReducer from './slices/smoothScrollingSlice';
-import starsReducer from './slices/starsSlice';
+// import starsReducer from './slices/starsSlice';
 
 // Redux store 생성
 const Store = configureStore({
 	reducer: {
 		smoothScrolling: smoothScrollingReducer,
-		stars: starsReducer,
+		// stars: starsReducer,
 	},
 });
 

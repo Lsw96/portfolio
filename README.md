@@ -1,4 +1,28 @@
-# React + TypeScript + Vite
+# React + TypeScript + Vite | 포트폴리오
+
+### 프로젝트 사용
+
+```
+Vite
+React
+Typescript
+SCSS
+GSAP
+Lenis
+```
+
+### 소개
+
+```
+포트폴리오
+```
+
+### 접속방법
+
+```
+Vercel
+
+```
 
 # 커밋 메시지 컨벤션
 

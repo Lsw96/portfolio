@@ -1,0 +1,10 @@
+@use '@scss/abstracts/variables.scss' as *;
+@import '@scss/abstracts/mixins.scss';
+
+.container {
+	@include heightSize;
+	@include flex();
+}
+.profileWrap {
+
+}

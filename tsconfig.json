@@ -11,14 +11,12 @@
 		"jsx": "react-jsx", // React JSX 문법을 사용하도록 설정
 		"baseUrl": "src",
 		"paths": {
+			"@css/*": ["assets/css/*"],
 			"@icons/*": ["assets/icons/*"],
 			"@images/*": ["assets/images/*"],
 			"@components/*": ["components/*"],
-			"@pages/*": ["pages/*"],
-			"@styles/*": ["styles/*"],
-			"@scss/*": ["styles/scss/*"],
-			"@hooks/*": ["hooks/*"],
-			"@utils/*": ["utils/*"],
+			"@hooks/*": ["components/hooks/*"],
+			"@utils/*": ["components/utils/*"],
 			"@store/*": ["store/*"]
 		},
 		"allowSyntheticDefaultImports": true, // import 구문을 좀 더 유연하게

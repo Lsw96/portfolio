@@ -12,9 +12,9 @@ interface SmoothScrollingState {
 // 초기 상태 정의
 const initialState: SmoothScrollingState = {
 	lerp: 0.1,
-	duration: 1.5,
-	smoothTouch: false,
-	smooth: true,
+	duration: 1.4,
+	smoothTouch: true,
+	smooth: false,
 };
 
 // Slice 생성

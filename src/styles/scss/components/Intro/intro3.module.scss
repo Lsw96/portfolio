@@ -1,8 +1,0 @@
-@use '@scss/abstracts/variables.scss' as *;
-@import '@scss/abstracts/mixins.scss';
-
-.box {
-	@include heightSize;
-	@include flex(column);
-	color: white;
-}
