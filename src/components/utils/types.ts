@@ -1,13 +1,23 @@
+// Progress Types
+export interface ProgressRefType {
+	current: HTMLDivElement | null;
+}
+
+// Header Types
+export interface AudioWaveformProps {
+	audioElement: HTMLAudioElement | null;
+}
+
 // Section01 Types
 export interface Sec01Target {
-    // 요소 참조type
+	// 요소 참조type
 	intro: React.RefObject<HTMLElement>;
 	titleTop: React.RefObject<HTMLElement>;
 	titleMiddle: React.RefObject<HTMLElement>;
 	titleBottom: React.RefObject<HTMLElement>;
 	particleIcon: React.RefObject<HTMLElement>;
 
-    // 이미지 참조type
+	// 이미지 참조type
 	react: React.RefObject<HTMLImageElement>;
 	javascript: React.RefObject<HTMLImageElement>;
 	typescript: React.RefObject<HTMLImageElement>;

@@ -1,28 +1,58 @@
 import gsap from 'gsap';
 import { ScrollTrigger, MotionPathPlugin, CSSPlugin } from 'gsap/all';
-// import Lenis from 'lenis';
 
-import { Sec01Target } from './types';
+import { ProgressRefType, Sec01Target } from './types';
 
 gsap.registerPlugin(ScrollTrigger, MotionPathPlugin, CSSPlugin);
 
 class Animation {
 	// 기본 레이아웃
 	static layout = {
-		header: (target: HTMLElement): void => {
-			// header 애니메이션 로직
+		header: (audio: HTMLAudioElement, audioIcon: HTMLImageElement) => {
+            if (audio.paused) {
+				audio.play();
+				audioIcon.src = '/audio/VolumeOn.gif';
+			} else {
+				audio.pause();
+                audio.currentTime = 0;
+				audioIcon.src = '/audio/VolumeOff.gif';
+			}
 		},
 
-		main: (): void => {
-			// main 애니메이션 로직
+		main: (target: React.RefObject<HTMLDivElement>) => {
+			gsap.to(target, {
+				keyframes: [
+					{ x: '0%', y: '0%', duration: 0.1 },
+					{ x: '-5%', y: '-5%', duration: 0.1 },
+					{ x: '-10%', y: '5%', duration: 0.1 },
+					{ x: '5%', y: '-10%', duration: 0.1 },
+					{ x: '-5%', y: '15%', duration: 0.1 },
+					{ x: '-10%', y: '5%', duration: 0.1 },
+					{ x: '15%', y: '0%', duration: 0.1 },
+					{ x: '0%', y: '10%', duration: 0.1 },
+					{ x: '-15%', y: '0%', duration: 0.1 },
+					{ x: '10%', y: '5%', duration: 0.1 },
+					{ x: '5%', y: '0%', duration: 0.1 },
+				],
+				repeat: -1, // 무한 반복
+				ease: 'none',
+			});
 		},
 
 		footer: (): void => {
 			// footer 애니메이션 로직
 		},
 
-		progress: (): void => {
-			// progress 애니메이션 로직
+		progress: (target: React.RefObject<HTMLDivElement>) => {
+			if (target.current) {
+				gsap.to(target.current, {
+					height: '100%',
+					ease: 'none',
+					scrollTrigger: {
+						scrub: 0.3,
+					},
+				});
+			}
 		},
 	};
 
@@ -109,42 +139,54 @@ class Animation {
 			// 타이틀
 			const titlePosTop = target.titleTop.current ? [target.titleTop.current] : [];
 			const titlePosMiddle = target.titleMiddle.current ? [target.titleMiddle.current] : [];
+			const titlePosBottom = target.titleBottom.current;
 
 			// 텍스트 분리 및 삽입
-			const splitText = (element: HTMLElement | null) => {
-				if (!element) return;
+			const splitText = (element: HTMLElement | null): HTMLElement[] => {
+				if (!element) return [];
 				const text = element.textContent || '';
 				element.textContent = '';
+
+				const spans: HTMLElement[] = []; // h2 태그를 저장할 배열생성
 
 				text.split('').forEach(char => {
 					const span = document.createElement('h2');
 					span.textContent = char;
 					element.appendChild(span);
+					spans.push(span); // 생성된 span을 배열에 저장
 				});
-			};
-			titlePosTop.forEach(element => splitText(element));
-			titlePosMiddle.forEach(element => splitText(element));
 
-			gsap.fromTo(
-				'.intro .title .top > h2, .intro .title .middle > h2',
-				{
-					// y: 0,
-					// opacity: 1,
-					// transform: 50
+				return spans; // 생성된 h2 태그 배열 반환
+			};
+
+			const topTitleH2s = titlePosTop.map(element => splitText(element)).flat();
+			const middleTitleH2s = titlePosMiddle.map(element => splitText(element)).flat();
+
+			gsap.to(topTitleH2s.concat(middleTitleH2s), {
+				y: -350,
+				opacity: 0,
+				filter: 'blur(20px)',
+				stagger: 0.01,
+				scrollTrigger: {
+					trigger: target.intro.current,
+					start: 'top 0%',
+					end: 'bottom 40%',
+					scrub: true,
 				},
-				{
-					y: -500,
-					opacity: 0,
-					filter: 'blur(20px)',
-					stagger: 0.01,
-					scrollTrigger: {
-						trigger: target.intro.current,
-						start: 'top 0%',
-						end: 'bottom 20%',
-						scrub: true,
-					},
-				},
-			);
+			});
+
+			// gsap.to(titlePosBottom, {
+			// 	opacity: 0,
+			// 	scale: 0.8,
+			// 	filter: 'blur(5px)',
+			// 	ease: 'power1.out',
+			// 	scrollTrigger: {
+			// 		trigger: target.intro.current,
+			// 		start: 'top top',
+			// 		end: 'bottom 5%',
+			// 		scrub: true,
+			// 	},
+			// });
 		},
 	};
 

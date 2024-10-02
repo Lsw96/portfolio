@@ -21,7 +21,6 @@ import SkipComponents from '@components/common/SkipComponents';
 // import Animation from '@components/utils/animation';
 
 const App: React.FC = () => {
-
 	return (
 		<>
 			<Header />

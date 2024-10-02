@@ -4,7 +4,7 @@ import Animation from '../utils/animation';
 const Section03:React.FC = () => {
 
 	return (
-		<section className="container">
+		<section id='connect' className="container">
 			<p>Section03</p>
 		</section>
 	);

@@ -43,15 +43,16 @@ body {
 	cursor: url('/cursor/cursor_default.svg'), auto;
 }
 
+// 웹 상 요소 드래그 시
 ::selection {
+	color: rgb(19, 71, 85);
 	background: rgba(255, 255, 255, 0);
-	border-radius: 10px;
-	color: rgb(212, 0, 99);
 }
 
 ::-webkit-scrollbar {
 	display: none;
 }
+
 // 로딩 중 스크롤 방지
 .no-scroll {
 	overflow-y: scroll;
@@ -190,6 +191,10 @@ button {
 }
 a {
 	text-decoration: none;
+	cursor: url('/cursor/cursor_hover.png'), auto;
+	&:active {
+		cursor: url('/cursor/cursor_active.png'), auto;
+	}
 }
 
 #root {

@@ -59,7 +59,7 @@ const Section01: React.FC = () => {
 
 	return (
 		// Section 01 | 메인
-		<section className="intro container" ref={refs.intro}>
+		<section id="intro" ref={refs.intro}>
 			{/* 제목 */}
 			<article className="title">
 				<section className="top titleLayout" ref={refs.titleTop}>
@@ -68,7 +68,10 @@ const Section01: React.FC = () => {
 				<section className="middle titleLayout" ref={refs.titleMiddle}>
 					PORTFOLIO
 				</section>
-				<section className="bottom titleLayout" ref={refs.titleBottom}>
+				<section
+					className="bottom titleLayout"
+					ref={refs.titleBottom}
+				>
 					인터랙티브한 웹 디자인에 관심이 많은 프런트엔드 개발자
 				</section>
 			</article>
