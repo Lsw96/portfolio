@@ -7,6 +7,12 @@ export interface ProgressRefType {
 export interface AudioWaveformProps {
 	audioElement: HTMLAudioElement | null;
 }
+export interface WaveFormProps {
+	audioElement: HTMLAudioElement | null;
+	canvasHeight?: number;
+	barWidth?: number;
+	baseColor?: string;
+}
 
 // Section01 Types
 export interface Sec01Target {

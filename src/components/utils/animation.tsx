@@ -1,7 +1,7 @@
 import gsap from 'gsap';
 import { ScrollTrigger, MotionPathPlugin, CSSPlugin } from 'gsap/all';
 
-import { ProgressRefType, Sec01Target } from './types';
+import { Sec01Target } from './types';
 
 gsap.registerPlugin(ScrollTrigger, MotionPathPlugin, CSSPlugin);
 
@@ -9,34 +9,18 @@ class Animation {
 	// 기본 레이아웃
 	static layout = {
 		header: (audio: HTMLAudioElement, audioIcon: HTMLImageElement) => {
-            if (audio.paused) {
+			if (audio.paused) {
 				audio.play();
 				audioIcon.src = '/audio/VolumeOn.gif';
 			} else {
 				audio.pause();
-                audio.currentTime = 0;
+				audio.currentTime = 0;
 				audioIcon.src = '/audio/VolumeOff.gif';
 			}
 		},
 
-		main: (target: React.RefObject<HTMLDivElement>) => {
-			gsap.to(target, {
-				keyframes: [
-					{ x: '0%', y: '0%', duration: 0.1 },
-					{ x: '-5%', y: '-5%', duration: 0.1 },
-					{ x: '-10%', y: '5%', duration: 0.1 },
-					{ x: '5%', y: '-10%', duration: 0.1 },
-					{ x: '-5%', y: '15%', duration: 0.1 },
-					{ x: '-10%', y: '5%', duration: 0.1 },
-					{ x: '15%', y: '0%', duration: 0.1 },
-					{ x: '0%', y: '10%', duration: 0.1 },
-					{ x: '-15%', y: '0%', duration: 0.1 },
-					{ x: '10%', y: '5%', duration: 0.1 },
-					{ x: '5%', y: '0%', duration: 0.1 },
-				],
-				repeat: -1, // 무한 반복
-				ease: 'none',
-			});
+		main: (): void => {
+			// main 애니메이션 로직
 		},
 
 		footer: (): void => {

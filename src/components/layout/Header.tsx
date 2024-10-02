@@ -4,7 +4,7 @@ import { useRef, useEffect, useState } from 'react';
 import Animation from '@utils/animation';
 
 // components
-// import AudioWaveform from '@components/common/AudioWaveform';
+import AudioWaveform from '@components/common/AudioWaveform';
 
 // images
 import logo from '/images/header_logo.svg';
@@ -18,9 +18,29 @@ const Header: React.FC = () => {
 	const headerRef = useRef<HTMLDivElement | null>(null);
 	const audioRef = useRef<HTMLAudioElement | null>(null);
 	const iconRef = useRef<HTMLImageElement | null>(null);
+	const [isAudioInitialized, setIsAudioInitialized] = useState(false);
 
 	useEffect(() => {
 		audioRef.current = new Audio(Sound);
+        
+		// ended 이벤트 리스너 등록
+		const handleAudioEnd = () => {
+			if (audioRef.current) {
+				audioRef.current.currentTime = 0; // 오디오 시간을 처음으로 설정
+				audioRef.current.play(); // 자동 재생
+				if (iconRef.current) {
+					iconRef.current.src = VolumeOn; // 아이콘 변경
+				}
+			}
+		};
+
+		const audioElement = audioRef.current;
+		audioElement.addEventListener('ended', handleAudioEnd);
+
+		// cleanup 함수: 언마운트 시 이벤트 리스너 제거
+		return () => {
+			audioElement.removeEventListener('ended', handleAudioEnd);
+		};
 	}, []);
 
 	const handleContentClick = (id: string) => {
@@ -31,6 +51,10 @@ const Header: React.FC = () => {
 	const handleAudioClick = () => {
 		if (audioRef.current && iconRef.current) {
 			Animation.layout.header(audioRef.current, iconRef.current);
+			if (!isAudioInitialized) {
+				// AudioWaveform을 렌더링하면서 오디오 초기화
+				setIsAudioInitialized(true); // 초기화 상태를 true로 변경
+			}
 		}
 	};
 
@@ -73,7 +97,7 @@ const Header: React.FC = () => {
 				{/* 메뉴 END */}
 			</div>
 
-			{/* <AudioWaveform audioSrc={Sound} /> */}
+			{isAudioInitialized && <AudioWaveform audioElement={audioRef.current} />}
 		</header>
 	);
 };
