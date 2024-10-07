@@ -16,15 +16,21 @@
 		border-bottom: 1px solid rgba(255, 255, 255, 0.3);
 		.logo {
 			@include flex();
-			.logoImg {
-				width: 28px;
-				height: 34px;
-			}
-			h1 {
-				position: relative;
-				margin: 0 3px;
-				font-size: 1.6rem;
-				font-family: $base-Bold-font;
+			.logoInner {
+				@include flex();
+
+				.logoImg {
+					width: 28px;
+					height: 34px;
+					filter: invert(71%) sepia(78%) saturate(300%) hue-rotate(40deg) brightness(200%)
+						contrast(100%);
+				}
+				.logoTitle {
+					position: relative;
+					margin: 0 3px;
+					font-size: 1.6rem;
+					font-family: $base-Bold-font;
+				}
 			}
 			.audioIcon {
 				margin-top: 1px;
@@ -32,11 +38,11 @@
 				width: 26px;
 				height: 20px;
 				filter: brightness(0) invert(1);
-				transition: transform 0.3s ease;
+				transition: transform 0.26s ease;
 				&:hover {
 					filter: invert(71%) sepia(78%) saturate(354%) hue-rotate(72deg) brightness(95%)
 						contrast(101%);
-					transform: translateY(-3px);
+					transform: scale(1.24);
 				}
 			}
 		}
@@ -82,10 +88,10 @@
 	}
 }
 .audioWrap {
-    position: relative;
-    max-width: 1024px;
-    max-height: 200px;
-    width: 100%;
-    height: auto;
-    margin: 0 auto;
+	position: relative;
+	max-width: 1024px;
+	max-height: 200px;
+	width: 100%;
+	height: auto;
+	margin: 0 auto;
 }

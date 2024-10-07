@@ -6,10 +6,8 @@ import Animation from '@utils/animation';
 // components
 import AudioWaveform from '@components/common/AudioWaveform';
 
-// images
+// images & audio
 import logo from '/images/header_logo.svg';
-
-// audio
 import Sound from '/audio/backgroundSound.mp3';
 import VolumeOn from '/audio/VolumeOn.gif';
 import VolumeOff from '/audio/VolumeOff.gif';
@@ -21,41 +19,38 @@ const Header: React.FC = () => {
 	const [isAudioInitialized, setIsAudioInitialized] = useState(false);
 
 	useEffect(() => {
-		audioRef.current = new Audio(Sound);
-        
-		// ended 이벤트 리스너 등록
+		const audioElement = new Audio(Sound);
+		audioRef.current = audioElement;
+
 		const handleAudioEnd = () => {
-			if (audioRef.current) {
-				audioRef.current.currentTime = 0; // 오디오 시간을 처음으로 설정
-				audioRef.current.play(); // 자동 재생
-				if (iconRef.current) {
-					iconRef.current.src = VolumeOn; // 아이콘 변경
-				}
+			audioElement.currentTime = 0;
+			audioElement.play();
+			if (iconRef.current) {
+				iconRef.current.src = VolumeOn;
 			}
 		};
 
-		const audioElement = audioRef.current;
 		audioElement.addEventListener('ended', handleAudioEnd);
 
-		// cleanup 함수: 언마운트 시 이벤트 리스너 제거
 		return () => {
 			audioElement.removeEventListener('ended', handleAudioEnd);
 		};
 	}, []);
 
-	const handleContentClick = (id: string) => {
-		const targetElement = document.getElementById(id);
-		targetElement?.scrollIntoView({ behavior: 'smooth' });
-	};
-
 	const handleAudioClick = () => {
-		if (audioRef.current && iconRef.current) {
-			Animation.layout.header(audioRef.current, iconRef.current);
+		const audioElement = audioRef.current;
+		const iconElement = iconRef.current;
+
+		if (audioElement && iconElement) {
+			Animation.layout.header(audioElement, iconElement);
 			if (!isAudioInitialized) {
-				// AudioWaveform을 렌더링하면서 오디오 초기화
-				setIsAudioInitialized(true); // 초기화 상태를 true로 변경
+				setIsAudioInitialized(true);
 			}
 		}
+	};
+
+	const handleContentClick = (id: string) => {
+		document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
 	};
 
 	const navItems = [
@@ -69,9 +64,11 @@ const Header: React.FC = () => {
 		<header className="header" ref={headerRef} role="banner">
 			<div className="headerInner">
 				{/* 로고 */}
-				<section className="logo" onClick={() => handleContentClick('intro')}>
-					<img src={logo} className="logoImg" alt="Web Logo" />
-					<h1>이성우</h1>
+				<section className="logo">
+					<div className="logoInner" onClick={() => handleContentClick('intro')}>
+						<img src={logo} className="logoImg" alt="Web Logo" />
+						<h1 className="logoTitle">이성우</h1>
+					</div>
 					<img
 						src={VolumeOff}
 						alt="Web Audio"

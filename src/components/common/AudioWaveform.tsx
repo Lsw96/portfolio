@@ -33,9 +33,9 @@ const AudioWaveform: React.FC<WaveFormProps> = ({
 			source.connect(analyzer);
 			analyzer.connect(audioCtx.destination); // 오디오를 재생
 			audioElement.play(); // 오디오 재생
-			console.log('오디오 소스가 연결되어 재생 중'); // 확인 로그
+			console.log('Audio source connection');
 		} else {
-			console.log('오디오 소스가 없음'); // 확인 로그
+			console.log('Audio source connection failed');
 		}
 		return () => {
 			if (audioElement) {
@@ -51,7 +51,6 @@ const AudioWaveform: React.FC<WaveFormProps> = ({
 	const animateBars = (canvasCtx: CanvasRenderingContext2D) => {
 		if (!analyzerRef.current) return; // AnalyserNode가 유효한지 확인
 		analyzer.getByteFrequencyData(dataArray); // 데이터 업데이트
-		// console.log('Data Array:', dataArray);
 		canvasCtx.fillStyle = 'transparent'; // 배경색 설정
 		canvasCtx.fillRect(0, 0, viewportWidth, canvasHeight);
 

@@ -12,10 +12,12 @@ class Animation {
 			if (audio.paused) {
 				audio.play();
 				audioIcon.src = '/audio/VolumeOn.gif';
+                console.log('Audio Playing');
 			} else {
-				audio.pause();
+                audio.pause();
 				audio.currentTime = 0;
 				audioIcon.src = '/audio/VolumeOff.gif';
+                console.log('Audio Stopped');
 			}
 		},
 
