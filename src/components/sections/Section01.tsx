@@ -29,8 +29,7 @@ const Section01: React.FC = () => {
 	const arrow = useRef<HTMLImageElement | null>(null);
 	const money = useRef<HTMLImageElement | null>(null);
 	const dotLine = useRef<HTMLImageElement | null>(null);
-	const braketLeft = useRef<HTMLImageElement | null>(null);
-	const braketRight = useRef<HTMLImageElement | null>(null);
+	const braket = useRef<HTMLImageElement | null>(null);
 
 	const refs = useMemo(
 		() => ({
@@ -46,8 +45,7 @@ const Section01: React.FC = () => {
 			arrow,
 			money,
 			dotLine,
-			braketLeft,
-			braketRight,
+			braket,
 		}),
 		[],
 	);
@@ -74,14 +72,11 @@ const Section01: React.FC = () => {
 				<img ref={refs.react} src={Icon_react} alt="React 로고 이미지" />
 				<img ref={refs.javascript} src={Icon_javascript} alt="Javascript 로고 이미지" />
 				<img ref={refs.typescript} src={Icon_typescript} alt="Typescript 로고 이미지" />
-				<img ref={refs.vane} src={Icon_vane} alt="vane 이미지" />
+				<img ref={refs.braket} src={Icon_braket} alt="Braket 이미지" />
 				<img ref={refs.arrow} src={Icon_arrow} alt="arrow 이미지" />
 				<img ref={refs.money} src={Icon_money} alt="money 이미지" />
 				<img ref={refs.dotLine} src={Icon_dotLine} alt="dotLine 이미지" />
-				<div className="braketWrap">
-					<img ref={refs.braketLeft} src={Icon_braket} alt="Braket 이미지" />
-					<img ref={refs.braketRight} src={Icon_braket} alt="Braket 이미지" />
-				</div>
+				<img ref={refs.vane} src={Icon_vane} alt="vane 이미지" />
 			</article>
 			{/* 파티클 END */}
 		</section>

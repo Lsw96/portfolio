@@ -86,7 +86,7 @@ class Animation {
 				filter: 'blur(50px)',
 			});
 			scrollTrigger(target.vane.current, {
-				x: '-1300%',
+				x: '1300%',
 				y: '-1200%',
 				scale: 5,
 				rotation: 500,
@@ -113,16 +113,9 @@ class Animation {
 				rotation: 500,
 				filter: 'blur(30px)',
 			});
-			scrollTrigger(target.braketLeft.current, {
-				x: '-1300%',
-				y: '-1200%',
-				scale: 5,
-				rotation: 500,
-				filter: 'blur(30px)',
-			});
-			scrollTrigger(target.braketRight.current, {
-				x: '1300%',
-				y: '-1200%',
+			scrollTrigger(target.braket.current, {
+				x: '-1300%', // 가로
+				y: '-1200%', // 세로
 				scale: 5,
 				rotation: 500,
 				filter: 'blur(30px)',
@@ -165,19 +158,6 @@ class Animation {
 					scrub: true,
 				},
 			});
-
-			// gsap.to(titlePosBottom, {
-			// 	opacity: 0,
-			// 	scale: 0.8,
-			// 	filter: 'blur(5px)',
-			// 	ease: 'power1.out',
-			// 	scrollTrigger: {
-			// 		trigger: target.intro.current,
-			// 		start: 'top top',
-			// 		end: 'bottom 5%',
-			// 		scrub: true,
-			// 	},
-			// });
 		},
 	};
 

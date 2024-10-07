@@ -30,8 +30,7 @@ export interface Sec01Target {
 	arrow: React.RefObject<HTMLImageElement>;
 	money: React.RefObject<HTMLImageElement>;
 	dotLine: React.RefObject<HTMLImageElement>;
-	braketLeft: React.RefObject<HTMLImageElement>;
-	braketRight: React.RefObject<HTMLImageElement>;
+	braket: React.RefObject<HTMLImageElement>;
 }
 
 // Section02 Types ==================================
