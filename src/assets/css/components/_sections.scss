@@ -31,7 +31,7 @@
 	}
     &::before {
         content: '';
-        z-index: 1818181818;
+        z-index: 19;
         position: absolute;
         bottom: 0;
         left: 0;
@@ -59,17 +59,12 @@
 				color: $color-primary-500;
 			}
 		}
-		.middle {
+		.bottom {
 			h2 {
 				font-family: $base-Bold-font;
 				font-size: 14vmin;
 				color: $color-white;
 			}
-		}
-		.bottom {
-			margin-top: 168px;
-			font-size: 1.6vmin;
-            text-align: center;
 		}
 	}
 

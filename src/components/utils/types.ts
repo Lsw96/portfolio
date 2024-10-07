@@ -14,14 +14,13 @@ export interface WaveFormProps {
 	baseColor?: string;
 }
 
-// Section01 Types
+// Section01 Types ==================================
 export interface Sec01Target {
 	// 요소 참조type
 	intro: React.RefObject<HTMLElement>;
 	titleTop: React.RefObject<HTMLElement>;
 	titleMiddle: React.RefObject<HTMLElement>;
 	titleBottom: React.RefObject<HTMLElement>;
-	particleIcon: React.RefObject<HTMLElement>;
 
 	// 이미지 참조type
 	react: React.RefObject<HTMLImageElement>;
@@ -34,9 +33,34 @@ export interface Sec01Target {
 	braketLeft: React.RefObject<HTMLImageElement>;
 	braketRight: React.RefObject<HTMLImageElement>;
 }
-// Section02 Types
-// Section03 Types
-// Section04 Types
-// Section05 Types
-// Section06 Types
-// Section07 Types
+
+// Section02 Types ==================================
+export interface Sec02Target {
+	// 요소 참조type
+	about?: React.RefObject<HTMLElement>;
+}
+
+// Section03 Types ==================================
+export interface Sec03Target {
+	// 요소 참조 ref
+}
+
+// Section04 Types ==================================
+export interface Sec04Target {
+	// 요소 참조 ref
+}
+
+// Section05 Types ==================================
+export interface Sec05Target {
+	// 요소 참조 ref
+}
+
+// Section06 Types ==================================
+export interface Sec06Target {
+	// 요소 참조 ref
+}
+
+// Section07 Types ==================================
+export interface Sec07Target {
+	// 요소 참조 ref
+}

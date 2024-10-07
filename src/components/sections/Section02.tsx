@@ -1,11 +1,26 @@
-import React,{ useEffect, useRef } from 'react';
-import Animation from '../utils/animation';
+import React, { useRef, useMemo, useEffect } from 'react';
 
-const Section02:React.FC = () => {
+// utils
+import Animation from '@utils/animation';
+
+const Section02: React.FC = () => {
+	// 요소 참조ref
+	const about = useRef<HTMLElement | null>(null);
+
+	const refs = useMemo(
+		() => ({
+			about,
+		}),
+		[],
+	);
+
+	useEffect(() => {
+		Animation.section02.scroll(refs);
+	}, [refs]);
 
 	return (
-		<section id='project' className="container">
-			<p className='sec02a'>Section02</p>
+		<section id="about" className="container" ref={refs.about}>
+			<p className="sec02a">Section02</p>
 		</section>
 	);
 };

@@ -1,7 +1,15 @@
 import gsap from 'gsap';
 import { ScrollTrigger, MotionPathPlugin, CSSPlugin } from 'gsap/all';
 
-import { Sec01Target } from './types';
+import {
+	Sec01Target,
+	Sec02Target,
+	Sec03Target,
+	Sec04Target,
+	Sec05Target,
+	Sec06Target,
+	Sec07Target,
+} from './types';
 
 gsap.registerPlugin(ScrollTrigger, MotionPathPlugin, CSSPlugin);
 
@@ -12,12 +20,12 @@ class Animation {
 			if (audio.paused) {
 				audio.play();
 				audioIcon.src = '/audio/VolumeOn.gif';
-                console.log('Audio Playing');
+				console.log('Audio Playing');
 			} else {
-                audio.pause();
+				audio.pause();
 				audio.currentTime = 0;
 				audioIcon.src = '/audio/VolumeOff.gif';
-                console.log('Audio Stopped');
+				console.log('Audio Stopped');
 			}
 		},
 
@@ -44,10 +52,8 @@ class Animation {
 
 	// Section 01 : Intro
 	static section01 = {
-		scroll: (target: Sec01Target): void => {
-			let trigger = target.particleIcon.current; // 나타나면 실행할 섹션
-
-			// 돌려 사용할 스크롤 트리거 함수
+		scroll: (target: Sec01Target & Sec02Target): void => {
+			let trigger = target.about?.current ?? null; // 나타나면 실행할 섹션
 			const scrollTrigger = (target: HTMLElement | null, option: gsap.TweenVars): void => {
 				if (target) {
 					ScrollTrigger.create({
@@ -124,8 +130,7 @@ class Animation {
 
 			// 타이틀
 			const titlePosTop = target.titleTop.current ? [target.titleTop.current] : [];
-			const titlePosMiddle = target.titleMiddle.current ? [target.titleMiddle.current] : [];
-			const titlePosBottom = target.titleBottom.current;
+			const titlePosBottom = target.titleBottom.current ? [target.titleBottom.current] : [];
 
 			// 텍스트 분리 및 삽입
 			const splitText = (element: HTMLElement | null): HTMLElement[] => {
@@ -146,9 +151,9 @@ class Animation {
 			};
 
 			const topTitleH2s = titlePosTop.map(element => splitText(element)).flat();
-			const middleTitleH2s = titlePosMiddle.map(element => splitText(element)).flat();
+			const bottomTitleH2s = titlePosBottom.map(element => splitText(element)).flat();
 
-			gsap.to(topTitleH2s.concat(middleTitleH2s), {
+			gsap.to(topTitleH2s.concat(bottomTitleH2s), {
 				y: -350,
 				opacity: 0,
 				filter: 'blur(20px)',
@@ -177,17 +182,41 @@ class Animation {
 	};
 
 	// Section 02 :
-	static section02 = {};
+	static section02 = {
+		scroll: (target: Sec02Target): void => {
+			// 애니메이션 로직
+		},
+	};
 	// Section 03 :
-	static section03 = {};
+	static section03 = {
+		scroll: (target: Sec03Target): void => {
+			// 애니메이션 로직
+		},
+	};
 	// Section 04 :
-	static section04 = {};
+	static section04 = {
+		scroll: (target: Sec04Target): void => {
+			// 애니메이션 로직
+		},
+	};
 	// Section 05 :
-	static section05 = {};
+	static section05 = {
+		scroll: (target: Sec05Target): void => {
+			// 애니메이션 로직
+		},
+	};
 	// Section 06 :
-	static section06 = {};
+	static section06 = {
+		scroll: (target: Sec06Target): void => {
+			// 애니메이션 로직
+		},
+	};
 	// Section 07 :
-	static section07 = {};
+	static section07 = {
+		scroll: (target: Sec07Target): void => {
+			// 애니메이션 로직
+		},
+	};
 }
 
 export default Animation;

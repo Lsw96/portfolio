@@ -32,7 +32,6 @@ const Section01: React.FC = () => {
 	const braketLeft = useRef<HTMLImageElement | null>(null);
 	const braketRight = useRef<HTMLImageElement | null>(null);
 
-	// refs를 memo화하여 성능 최적화
 	const refs = useMemo(
 		() => ({
 			intro,
@@ -58,21 +57,14 @@ const Section01: React.FC = () => {
 	}, [refs]);
 
 	return (
-		// Section 01 | 메인
 		<section id="intro" ref={refs.intro}>
 			{/* 제목 */}
 			<article className="title">
 				<section className="top titleLayout" ref={refs.titleTop}>
 					LEESEONGWOO
 				</section>
-				<section className="middle titleLayout" ref={refs.titleMiddle}>
+				<section className="bottom titleLayout" ref={refs.titleBottom}>
 					PORTFOLIO
-				</section>
-				<section
-					className="bottom titleLayout"
-					ref={refs.titleBottom}
-				>
-					인터랙티브한 웹 디자인에 관심이 많은 프런트엔드 개발자
 				</section>
 			</article>
 			{/* 제목 END */}
