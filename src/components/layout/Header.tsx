@@ -70,31 +70,36 @@ const Header: React.FC = () => {
 						<h1 className="logoTitle">이성우</h1>
 					</div>
 					<img
-						src={VolumeOff}
-						alt="Web Audio"
 						className="audioIcon"
-						onClick={handleAudioClick}
+						alt="Web Audio"
+						src={VolumeOff}
 						ref={iconRef}
+						onClick={handleAudioClick}
 					/>
 				</section>
 				{/* 로고 END */}
 
-				{/* 메뉴 */}
-				<nav role="navigation">
-					<ul className="navList" role="list">
-						{navItems.map(item => (
-							<li className="listItem" key={item.id}>
-								<a className="navItem" onClick={() => handleContentClick(item.id)}>
-									{item.label}
-								</a>
-							</li>
-						))}
-					</ul>
-				</nav>
-				{/* 메뉴 END */}
+				{/* 오디오 창 */}
+				<section className="audioView">
+					<AudioWaveform audioElement={audioRef.current} />
+				</section>
+				{/* {isAudioInitialized && <AudioWaveform audioElement={audioRef.current} />} */}
+				{/* 오디오 창 END */}
 			</div>
 
-			{isAudioInitialized && <AudioWaveform audioElement={audioRef.current} />}
+			{/* 메뉴 */}
+			<nav role="navigation">
+				<ul className="navList" role="list">
+					{navItems.map(item => (
+						<li className="listItem" key={item.id}>
+							<a className="navItem" onClick={() => handleContentClick(item.id)}>
+								{item.label}
+							</a>
+						</li>
+					))}
+				</ul>
+			</nav>
+			{/* 메뉴 END */}
 		</header>
 	);
 };

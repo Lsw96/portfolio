@@ -1,6 +1,6 @@
 .header {
 	position: fixed;
-	z-index: 181818181818;
+	z-index: 1818181818;
 	top: 0;
 	left: 0;
 	right: 0;
@@ -10,11 +10,13 @@
 	-webkit-mask-image: linear-gradient(to bottom, #000, #000 12.5%, #000 57.5%, #0000);
 
 	.headerInner {
+		position: relative;
 		@include flex(row, space-between);
 		max-width: $breakpoint-desktop;
 		margin: 0 auto;
 		border-bottom: 1px solid rgba(255, 255, 255, 0.3);
 		.logo {
+			z-index: 2;
 			@include flex();
 			.logoInner {
 				@include flex();
@@ -30,6 +32,7 @@
 					margin: 0 3px;
 					font-size: 1.6rem;
 					font-family: $base-Bold-font;
+					white-space: nowrap;
 				}
 			}
 			.audioIcon {
@@ -46,52 +49,127 @@
 				}
 			}
 		}
+	}
 
+	nav {
+        max-width: $breakpoint-tablet;
+        margin: 0 auto;
+		.navList {
+			@include flex();
+			border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+			.listItem {
+				margin: 2px;
+				color: $color-white;
+				transition: all 0.3s ease;
+				transform: translateY(0);
+				.navItem {
+					overflow: hidden;
+					@include flex();
+					padding: 10px 36px;
+					color: $color-gray200;
+					font-size: 1.2rem;
+					text-decoration: none;
+					text-transform: uppercase;
+					white-space: nowrap;
+					letter-spacing: 1.2px;
+					@include buttonStyle($color-gray900);
+					&:hover {
+						color: #fff;
+						@include buttonHoverStyle;
+						border: inset 1px solid #fff;
+						box-shadow: inset 0 0 4px 2px rgb(77, 71, 71);
+					}
+					&::before {
+						content: '';
+						position: absolute;
+						top: 0;
+						left: -100%;
+						width: 100%;
+						height: 100%;
+						background: linear-gradient(
+							to left,
+							rgba(255, 255, 255, 0.2),
+							rgba(31, 31, 31, 0)
+						);
+						opacity: 0;
+						visibility: hidden;
+						transition: left 0.8s ease;
+					}
+
+					&:hover::before {
+						left: 100%;
+						opacity: 1;
+						visibility: visible;
+					}
+				}
+			}
+		}
+	}
+
+	.audioController {
+		@include flex(flex-end);
+	}
+
+	.audioView {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		max-width: 400px;
+		width: 100%;
+		height: 24px;
+		canvas {
+			width: 100%;
+			height: 100%;
+			padding: 6px 12px;
+			@include buttonLargeStyle($color-gray900);
+		}
+	}
+}
+
+// media Query
+@include mobile {
+	.header {
+		padding: 12px;
+		.audioView {
+            display: none;
+		}
 		nav {
 			.navList {
-				display: flex;
+				@include flex($justify: flex-start);
 				.listItem {
-					color: $color-white;
-					transition: all 0.3s ease;
-					transform: translateY(0);
-					&:hover {
-						color: $color-primary-500;
-						transform: translateY(-3px);
-					}
-					> .navItem {
-						@include flex();
-						padding: 11px 12px;
-						color: inherit;
-						font-size: 1.2rem;
-						text-decoration: none;
-						text-transform: uppercase;
-						letter-spacing: 1px;
-					}
-					&:last-child .navItem {
-						padding-right: 0;
+					width: 100%;
+					.navItem {
+						padding: 6px 12px;
 					}
 				}
 			}
 		}
 	}
 }
-@include mobile {
-	.navList {
-		gap: 0;
-		li {
-			width: 84px;
-			height: 90px;
-			a {
-				font-size: 0.75rem;
+@include smallTablet {
+	.header {
+		padding: 12px 18px;
+		.audioView {
+			position: relative;
+			left: auto;
+			right: 0;
+			transform: none;
+			max-width: 100%;
+            margin-left: 8px;
+			canvas {
+				padding: 4px 8px;
+			}
+		}
+		nav {
+			.navList {
+				.listItem {
+					width: 100%;
+					.navItem {
+						padding: 8px 18px;
+					}
+				}
 			}
 		}
 	}
-}
-.audioWrap {
-	position: relative;
-	max-width: 1024px;
-	max-height: 200px;
-	width: 100%;
-	height: auto;
-	margin: 0 auto;
 }
