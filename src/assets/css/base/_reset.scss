@@ -1,5 +1,9 @@
 // 초기 설정
-* {
+*,
+*:after,
+*:before {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
 	box-sizing: border-box;
 }
 
@@ -38,7 +42,6 @@ body {
 	position: relative;
 	overflow-x: hidden;
 	width: 100%;
-	background: #000;
 	color: $color-white;
 	cursor: url('/cursor/cursor_default.svg'), auto;
 }
@@ -57,7 +60,7 @@ body {
 .no-scroll {
 	overflow-y: scroll;
 	position: fixed;
-	top: var(--scroll-top, 0);
+	top: 0;
 	left: 0;
 }
 
@@ -191,12 +194,14 @@ button {
 }
 a {
 	text-decoration: none;
+}
+button,
+a {
 	cursor: url('/cursor/cursor_hover.png'), auto;
 	&:active {
 		cursor: url('/cursor/cursor_active.png'), auto;
 	}
 }
-
 #root {
 	margin: 0;
 	padding: 0;

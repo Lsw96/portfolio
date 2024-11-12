@@ -1,36 +1,67 @@
+// Data Types
+
+export interface SocialLink {
+	id: number;
+	icon: React.ReactNode;
+	href: string;
+	ariaLabel: string;
+	tooltip: string;
+	flow: 'top' | 'right' | 'bottom' | 'left';
+}
+export interface About {
+	title: string;
+	desc: string;
+}
+export interface Career {
+	title: string;
+	desc: {
+		name: string;
+		description: string;
+		tags: string[];
+	}[];
+}
+export interface Data {
+	social: SocialLink[];
+	about: About[];
+	career: Career[];
+}
+
 // Progress Types
 export interface ProgressRefType {
 	current: HTMLDivElement | null;
 }
-
-// Header Types
-export interface AudioWaveformProps {
-	audioElement: HTMLAudioElement | null;
+export interface ProgressProps {
+	target: React.RefObject<HTMLDivElement>;
 }
-export interface WaveFormProps {
-	audioElement: HTMLAudioElement | null;
-	canvasHeight?: number;
-	barWidth?: number;
-	baseColor?: string;
+
+// Marquee Types
+export interface MarqueeComponentsProps {
+	target: React.RefObject<HTMLDivElement>;
+	title: string;
+}
+
+// Looping Word Types ===============================
+export interface LoopingWordComponentsProps {
+	wordListRef: React.RefObject<HTMLUListElement>;
+	edgeElementRef: React.RefObject<HTMLDivElement>;
 }
 
 // Section01 Types ==================================
 export interface Sec01Target {
 	// 요소 참조type
-	intro: React.RefObject<HTMLElement>;
-	titleTop: React.RefObject<HTMLElement>;
-	titleMiddle: React.RefObject<HTMLElement>;
-	titleBottom: React.RefObject<HTMLElement>;
-
-	// 이미지 참조type
-	react: React.RefObject<HTMLImageElement>;
-	javascript: React.RefObject<HTMLImageElement>;
-	typescript: React.RefObject<HTMLImageElement>;
-	vane: React.RefObject<HTMLImageElement>;
-	arrow: React.RefObject<HTMLImageElement>;
-	money: React.RefObject<HTMLImageElement>;
-	dotLine: React.RefObject<HTMLImageElement>;
-	braket: React.RefObject<HTMLImageElement>;
+	intro: React.RefObject<HTMLElement | null>;
+	wordListRef: React.RefObject<HTMLUListElement | null>;
+	edgeElementRef: React.RefObject<HTMLDivElement | null>;
+}
+export interface setDotsProps {
+	setDots: React.Dispatch<React.SetStateAction<string>>;
+}
+export interface HandleCountProps {
+	count: number;
+	bodyRef: {
+		current: HTMLBodyElement | null;
+	};
+	setDisplayCount: React.Dispatch<React.SetStateAction<number>>;
 }
 
 // Section02 Types ==================================

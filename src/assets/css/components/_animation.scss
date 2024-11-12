@@ -1,3 +1,17 @@
+@keyframes loading-shimmer {
+	from {
+		transform: translateX(-100%);
+	}
+	to {
+		transform: translateX(100%);
+	}
+}
+@keyframes slideIn {
+	to {
+		left: 50%;
+	}
+}
+
 @keyframes rotate {
 	from {
 		transform: rotate(-3deg);
@@ -49,11 +63,41 @@
 }
 
 @keyframes move-forever {
-	0% {
+	from {
 		transform: translate(-90px, 0%);
 	}
-	100% {
+	to {
 		transform: translate(85px, 0%);
+	}
+}
+
+@keyframes dotJump {
+	0%,
+	100% {
+		opacity: 0.5;
+	}
+	50% {
+		opacity: 0.1;
+	}
+}
+
+@keyframes tooltips-vert {
+	to {
+		opacity: 0.9;
+		transform: translate(-50%, 0);
+	}
+}
+@keyframes tooltips-horz {
+	to {
+		opacity: 0.9;
+		transform: translate(0, -50%);
+	}
+}
+
+@keyframes qwer {
+	100% {
+		background: linear-gradient(180deg, var(--line) 1px, transparent 1px var(--size)) 25% 75% /
+			var(--size) var(--size);
 	}
 }
 

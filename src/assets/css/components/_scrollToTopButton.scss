@@ -1,0 +1,33 @@
+.scroll-to-top {
+	position: fixed;
+	z-index: 18181818;
+	bottom: 2.4rem;
+	right: 2.4rem;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 4rem;
+	height: 4rem;
+	font-size: 1.6rem;
+	color: $color-white;
+	background-color: $color-gray700;
+	border: none;
+	border-radius: 50%;
+	opacity: 0;
+	transform: translateY(80%);
+	transition: opacity 0.618s ease, transform 0.618s ease;
+	&::after {
+		font-size: 1.1rem;
+		font-family: $base-font;
+		padding: 0.6em 1em;
+	}
+
+	&.visible {
+		opacity: 1;
+		transform: translateY(0);
+	}
+
+	&:hover {
+		background-color: $color-primary-500;
+	}
+}

@@ -15,14 +15,16 @@
 @import 'layout/main';
 @import 'layout/footer';
 
-// 반응형 모바일
-@import 'layout/mobile';
-
 // components 재사용 가능한 컴포넌트
 @import 'components/skip';
 // @import 'components/cursor';
+@import './components/loading';
 @import 'components/progress';
-// @import './components/loading';
+@import 'components/social';
+@import 'components/scrollToTopButton';
 @import 'components/sections';
 @import 'components/animation';
 @import 'components/glitch';
+
+// 반응형 모바일
+@import 'layout/mobile';

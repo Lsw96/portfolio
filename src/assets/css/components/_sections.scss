@@ -1,125 +1,220 @@
-// Section 01
 .container {
 	width: 100%;
 	height: 100%;
 	min-height: 100vh;
 	box-sizing: border-box;
+    .content {
+        max-width: 1280px;
+        margin: 0 auto;
+    }
 }
 
+// Section 01
 #intro {
 	position: relative;
 	overflow: hidden;
-
 	width: 100%;
 	height: 100%;
 	min-height: 100vh;
-	box-sizing: border-box;
+}
 
-	&::after {
-		content: '';
-		position: absolute;
-		top: 0;
-		left: 0;
-		width: 100%;
-		height: 100%;
-		filter: opacity(0.3);
-		background: url(/images/common/IntroBg.gif);
-		background-size: cover;
-		pointer-events: none;
-		touch-action: none;
-	}
+.cloneable {
+	position: relative;
+	z-index: 2;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	min-height: 100vh;
+	background: $color-black;
+
 	&::before {
 		content: '';
-		z-index: 2;
 		position: absolute;
-		bottom: 0;
-		left: 0;
-		width: 100%;
-		height: 15%;
-		background: linear-gradient(to top, #000, rgba(0, 0, 0, 0));
+		z-index: -1;
+		top: 50%;
+		left: -50%;
+		transform: translate(-50%, -50%);
+		width: 90%;
+		height: 5em;
+		background: $color-primary-500;
+		opacity: 0.1;
+		transform-origin: left center;
+		animation: slideIn 1s $bounce 1.4s forwards;
 	}
 
-	.title {
-		z-index: 1;
+	&::after {
+		--size: 46px;
+		--line: color-mix(in lch, #f6f6f6, transparent 92.5%);
+		content: '';
 		position: absolute;
-		top: 50%;
+		z-index: 1;
+		top: 0;
+		height: 100vh;
+		width: 100vw;
+		background: linear-gradient(90deg, var(--line) 1px, transparent 1px var(--size)) 50% 50% /
+				var(--size) var(--size),
+			linear-gradient(var(--line) 1px, transparent 1px var(--size)) 50% 50% / var(--size)
+				var(--size);
+		mask: linear-gradient(160deg, transparent 38%, #f6f6f6);
+		transform-style: flat;
+		pointer-events: none;
+	}
+
+	.looping-words {
+		position: relative;
+		z-index: 2;
+		height: 0.56em;
+		font-size: 48vw;
+		line-height: 1.2;
+		transition: font-size 0.28s ease;
+
+		.looping-words__containers {
+			overflow: hidden;
+			position: relative;
+			width: 100%;
+			height: 100%;
+			&::after {
+				content: '';
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: 100%;
+				height: 100%;
+				background-image: linear-gradient(
+					180deg,
+					$color-black 5%,
+					transparent 45%,
+					transparent 55%,
+					$color-black 95%
+				);
+				pointer-events: none;
+			}
+
+			.looping-words__list {
+				position: relative;
+				display: flex;
+				flex-flow: column;
+				align-items: center;
+				font-family: $base-Bold-font;
+				text-align: center;
+				text-transform: uppercase;
+				white-space: nowrap;
+				list-style: none;
+				transition: color 0.48s ease;
+				&.is--primary {
+					color: $color-primary-900;
+				}
+
+				&.is--gray {
+					color: $color-gray900;
+				}
+				.looping-words__p {
+					padding-left: 0.14em;
+					padding-right: 0.14em;
+				}
+			}
+		}
+	}
+
+	.looping-words__selector {
+		pointer-events: none;
+		width: 100%;
+		height: 0.29em;
+		position: absolute;
+		z-index: -1;
+		top: 49.4%;
 		left: 50%;
 		transform: translate(-50%, -50%);
-		display: flex;
-		flex-direction: column;
-		flex-wrap: wrap;
-		.titleLayout {
-			display: flex;
-			justify-content: center;
-		}
-		.top {
-			h2 {
-				font-size: 8vmin;
-				color: $color-primary-500;
+		background: $color-black;
+
+		.looping-words__edge {
+			display: block;
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 0.08em;
+			height: 0.08em;
+			border-top: 0.03em solid $color-primary-500;
+			border-left: 0.03em solid $color-primary-500;
+			&.is--2 {
+				left: auto;
+				right: 0;
+				transform: rotate(90deg);
 			}
-		}
-		.bottom {
-			h2 {
-				font-family: $base-Bold-font;
-				font-size: 14vmin;
-				color: $color-white;
+			&.is--3 {
+				inset: auto 0 0 auto;
+				transform: rotate(180deg);
+			}
+			&.is--4 {
+				top: auto;
+				bottom: 0;
+				transform: rotate(270deg);
 			}
 		}
 	}
+}
+.arrow-box {
+	position: absolute;
+	z-index: 18181818;
+	bottom: 84px;
+	left: 50%;
+	transform: translateX(-50%);
+	.down-arrow {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 4px;
+		.dot {
+			width: 6px;
+			height: 6px;
+			background-color: $color-primary-500; // 야광 초록색
+			animation: dotJump 0.8s infinite steps(1);
 
-	.particleIcon {
-		> img {
-			position: absolute;
-			left: 50%;
-			bottom: 0;
-			transform: translate(-50%);
-			z-index: 1;
-			width: 100%;
-			max-width: 5vmin;
+			// 각 도트가 순서대로 딜레이되도록 설정
 			&:nth-child(1) {
-				bottom: calc(50% - 35vh);
+				animation-delay: 0s;
 			}
 			&:nth-child(2) {
-				left: calc(50% - 15vw);
-				bottom: calc(50% - 30vh);
+				animation-delay: 0.1s;
 			}
 			&:nth-child(3) {
-				left: calc(50% + 20vw);
-				bottom: calc(50% - 20vh);
-			}
-			&:nth-child(4) {
-				max-width: 2.5vmin;
-				left: calc(50% - 25vw);
-				bottom: calc(50% + 20vh);
-				filter: blur(5px);
-				transform: translate(-50%) rotate(180deg);
-				opacity: 0.2;
-			}
-			&:nth-child(5) {
-				left: calc(50% + 25vw);
-				bottom: calc(50% + 10vh);
-			}
-			&:nth-child(6) {
-				left: calc(50% - 35vw);
-				bottom: calc(50% + 3vh);
-			}
-			&:nth-child(7) {
-				left: calc(50% + 35vw);
-				bottom: calc(50% - 40vh);
-			}
-			&:nth-child(8) {
-				left: calc(50% + 40vw);
-				bottom: calc(50% + 0vh);
+				animation-delay: 0.2s;
 			}
 		}
 	}
 }
 
 // Section 02
-#project {
-	background: #0a0a0a;
+#introduce {
+	position: relative;
+	z-index: 2;
+	min-height: 100vh;
+	background: $color-black;
+
+	&::after {
+		--size: 46px;
+		--line: color-mix(in lch, #f6f6f6, transparent 92.5%);
+		content: '';
+		position: absolute;
+		z-index: 1;
+		top: 0;
+		height: 100vh;
+		width: 100vw;
+		background: linear-gradient(90deg, var(--line) 1px, transparent 1px var(--size)) 50% 50% /
+				var(--size) var(--size),
+			linear-gradient(var(--line) 1px, transparent 1px var(--size)) 50% 50% / var(--size)
+				var(--size);
+		mask: linear-gradient(25deg, transparent 38%, #f6f6f6);
+		transform-style: flat;
+		pointer-events: none;
+	}
 	.sec02a {
 		height: 100vh;
 		@include flex;
 	}
+}
+
+// Section 03
+#skill {
+	background: gold;
 }

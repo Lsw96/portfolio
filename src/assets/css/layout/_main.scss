@@ -2,20 +2,20 @@ main {
 	overflow-x: hidden;
 
 	&::after {
-		content: '';
-		position: absolute;
-		z-index: 18;
-		height: 180%;
-		left: -40%;
-		top: -40%;
-		width: 180%;
-		filter: opacity(0.705);
-		pointer-events: none;
 		will-change: transform;
-		-webkit-transition: opacity 0.6s ease-out;
-		transition: opacity 0.6s ease-out;
-		-webkit-animation: noiseAnimation 1s steps(4) infinite;
-		animation: noiseAnimation 1s steps(4) infinite;
+		content: '';
+		position: fixed;
+		z-index: 1818181818181818181818;
+		top: -40%;
+		left: -40%;
+		width: 180%;
+		height: 180%;
 		background-image: url(/images/common/noise.png);
+		filter: opacity(0.7);
+		transition: opacity 0.6s ease-out;
+		-webkit-transition: opacity 0.6s ease-out;
+		animation: noiseAnimation 1.18s steps(4) infinite;
+		-webkit-animation: noiseAnimation 1.18s steps(4) infinite;
+		pointer-events: none;
 	}
 }

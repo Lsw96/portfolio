@@ -1,0 +1,58 @@
+// -------------------------------0px~tablet-------------------------------
+@media (max-width: #{$breakpoint-tablet - 1px}) {
+	.header {
+		nav {
+			.navList {
+				@include flex($justify: flex-start);
+				.listItem {
+					width: 100%;
+					.navItem {
+						padding: 6px 12px;
+
+						@media (min-width: #{$breakpoint-mobile}) {
+							padding: 8px 18px;
+						}
+					}
+				}
+			}
+		}
+
+		.marquee {
+			position: relative;
+			top: 30%;
+			left: auto;
+			right: 0;
+			transform: translate(0, -50%);
+			min-width: 150px;
+			max-width: 270px;
+
+			@media (min-width: #{$breakpoint-mobile}) {
+				min-width: 248px;
+				max-width: none;
+			}
+
+			.marqueeInner {
+				padding: 12px;
+			}
+		}
+	}
+
+	.social-icons {
+		flex-direction: row;
+		top: auto;
+		bottom: 24px;
+		left: 50%;
+		transform: translateX(-50%);
+	}
+
+	// Section01
+	.cloneable {
+		.looping-words {
+			font-size: 90vw;
+
+			@media (min-width: #{$breakpoint-mobile}) {
+				font-size: 80vw;
+			}
+		}
+	}
+}

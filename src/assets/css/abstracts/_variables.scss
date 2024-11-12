@@ -1,6 +1,9 @@
 // 폰트
 $base-font: 'Galmuri11', sans-serif;
+// $font-Galmuri11: 'Galmuri11', sans-serif;
 $base-Bold-font: 'Galmuri11-Bold', sans-serif;
+// $font-Galmuri11-Bold: 'Galmuri11-Bold', sans-serif;
+$font-LCDDot: 'LCDDot', sans-serif;
 
 // 색상
 $color-primary-900: #0bd93e;
@@ -37,6 +40,9 @@ $button-md-padding: 0.2rem 1.2rem;
 
 $button-lg-height: 4.8rem;
 $button-lg-padding: 1.2rem 1.8rem;
+
+// 애니메이션
+$bounce: cubic-bezier(0.34, 1.28, 0.64, 1);
 
 // 반응형 사이즈
 $breakpoint-desktop: 1024px;

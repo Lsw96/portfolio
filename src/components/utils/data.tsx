@@ -1,4 +1,52 @@
-export const data = {
+import { Data } from '@utils/types';
+
+import { FaGithub, FaFacebook, FaBlogger, FaInstagram } from 'react-icons/fa';
+import { MdEmail } from 'react-icons/md';
+
+export const data: Data = {
+	// FixedSocialComponents
+	social: [
+		{
+			id: 1,
+			icon: <FaFacebook />,
+			href: 'https://www.facebook.com/profile.php?id=100000812930344',
+			ariaLabel: 'Facebook',
+			tooltip: 'Facebook',
+			flow: 'right',
+		},
+		{
+			id: 2,
+			icon: <FaBlogger />,
+			href: 'https://lsw96.tistory.com/',
+			ariaLabel: 'Blog',
+			tooltip: 'Blog',
+			flow: 'right',
+		},
+		{
+			id: 3,
+			icon: <FaInstagram />,
+			href: 'https://www.instagram.com/seongwoo_1112/',
+			ariaLabel: 'Instagram',
+			tooltip: 'Instagram',
+			flow: 'right',
+		},
+		{
+			id: 4,
+			icon: <FaGithub />,
+			href: 'https://github.com/Lsw96',
+			ariaLabel: 'GitHub',
+			tooltip: 'GitHub',
+			flow: 'right',
+		},
+		{
+			id: 5,
+			icon: <MdEmail />,
+			href: 'mailto:tjddn1007@naver.com',
+			ariaLabel: 'Email',
+			tooltip: 'Email',
+			flow: 'right',
+		},
+	],
 	// Section 01
 	about: [
 		{
